@@ -20,45 +20,40 @@ twitch.onAuthorized((auth) => {
 });
 
 // when the config changes, update the panel! 
-twitch.configuration.onChanged(function(){
+twitch.configuration.onChanged(function () {
   //console.log(twitch.configuration.broadcaster)
-  if(twitch.configuration.broadcaster){
-    try{
+  if (twitch.configuration.broadcaster) {
+    try {
       var config = JSON.parse(twitch.configuration.broadcaster.content)
       //console.log(typeof config)
-      if(typeof config === "object"){
+      if (typeof config === "object") {
         options = config
         updateOptions()
-      }else{
+      } else {
         console.log('invalid config')
       }
-    }catch(e){
+    } catch (e) {
       console.log('invalid config')
     }
   }
 })
 
 
-// TODO: add logic for hitting Submit on Panel View
-$(function(){
-  $("#form").submit(function(e){
-    console.log('in function')
-    if(!token) { 
-      return console.log('Not authorized'); 
-    }
-    console.log('Submitting a question');
-    var optionA = $("#selectA").val()
-    var optionB = $("#selectB").val()
+$(function () {
 
-    //ajax call 
-    $.ajax({
-      type: 'POST',
-      url: location.protocol + '//localhost:3000/question',
-      data: JSON.stringify({first:optionA, second: optionB}),
-      contentType: 'application/json',
-      headers: { "Authorization": 'Bearer ' + token },
-    });
-  })  
+  // Get data from url
+  fetch('https://new.scoresaber.com/api/player/76561198038084750/full').then(async response => {
+
+    // Get the text from the response
+    const data = await response.json();
+    console.log(data);
+
+    // Get the song name from the json data
+    const pp = data.playerInfo.pp;
+
+    // Display song name in html
+    $(".boody").text(pp);
+  })
 });
 
 

@@ -18,8 +18,8 @@ app.use(bodyParser.json());
 
 
 
-// JWT Step 2: Get JWT Secret
-const sec ="k6vrwJKYHwYhSXxT69FGbLX5VjmkltYZGv9eSzdZisU=";
+// JWT Step 2: Get JWT Secret from enviroment variable
+const sec = process.env.BEAT_STATS_JWT_SECRET;
 const secret = Buffer.from(sec, 'base64');
 
 // string constant 
