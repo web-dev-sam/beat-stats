@@ -1,26 +1,18 @@
 {
-  "name": "extension-hello-world",
+  "name": "step2",
   "version": "1.0.0",
-  "description": "Simple Hello World Twitch Extension",
-  "main": "index.js",
+  "description": "",
+  "main": "app.js",
   "scripts": {
-    "cert": "node bin/generate_cert.js server",
-    "start": "node services/backend"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [
-    "twitch",
-    "extension"
-  ],
-  "author": "Emily Rose <amorelandra@twitch.tv>",
-  "license": "Apache-2.0",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "boom": "^7.2.0",
-    "color": "^3.0.0",
-    "commander": "^2.15.0",
-    "hapi": "^17.2.2",
-    "inert": "^5.1.0",
-    "jsonwebtoken": "^8.2.0",
-    "request": "^2.85.0",
-    "selfsigned": "^1.10.2"
+    "express": "^4.17.1",
+    "hapi": "^18.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.6.8"
   }
 }
