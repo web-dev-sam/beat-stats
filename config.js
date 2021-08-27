@@ -20,14 +20,18 @@ twitch.onAuthorized((auth) => {
 
 // when the config changes, save the new changes! 
 twitch.configuration.onChanged(function(){
-  console.log(twitch.configuration.broadcaster)
-	options = JSON.parse(twitch.configuration.broadcaster.content);
+  
+  console.log("HI", twitch.configuration.broadcaster);
 
-	$(`[name="scoresaber"]`).val(options.scoresaber);
+  if (twitch.configuration.broadcaster.content) {
+    //options = JSON.parse(twitch.configuration.broadcaster.content);
+    //$(`[name="scoresaber"]`).val(options.scoresaber);
+  }
+
 })
 
 function updateConfig() {
-  twitch.configuration.set("broadcaster", "1", JSON.stringify(options))
+  //twitch.configuration.set("broadcaster", "1", JSON.stringify(options))
 }
 
 // Function to save the streamer's WYR options  
