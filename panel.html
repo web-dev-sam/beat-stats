@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&family=Teko:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="font-awesome.css">
     <link rel="stylesheet" href="css/panel.css">
     <!-- #endregion -->
@@ -15,18 +15,43 @@
 
 
     <!-- #region Everything ones eyes can witness -->
-    <img class="bg-imooge" src="" id="profiePic" alt="">
+    <img class="bg-imooge" id="profiePic">
     <div class="sexy-blur"></div>
     <div class="boody">
-      <h2 id="name"></h2>
+      <h3 id="name">My ScoreSaber Rank</h3>
       <p id="config-warning" style="display: none;">Please setup your Config</p>
-      <div>Global Rank: <i class="fas fa-medal"></i><span id="rank"></span></div>
-      <div>PP: <i class="fas fa-table"></i><span id="pp"></span></div>
-      <div>Country: <img src= ""id="flags"><span id="country"></span></div>
-    <div>Avg Acc: <i class="fas fa-table"></i><span id="avgAcc"></span></div>
-    <div>Country Rank: <i class="fas fa-table"></i><span id="countryRank"></span></div>
-    <div>Ranked Play Count: <i class="fas fa-table"></i><span id="rankedPlayCount"></span></div>
-    <div>Total Play Count: <i class="fas fa-table"></i><span id="totalPlayCount"></span></div>
+      <div class="player-data">
+        <div class="left-column">
+          <div>
+            <span class="small">Global Rank</span><br>
+            <img src="assets/globe.png">
+            #<span class="fairly-big" id="rank"></span>
+          </div>
+          <div>
+            <span class="small">Local Rank</span><br>
+            <img id="flags">
+            #<span class="fairly-big" id="countryRank"></span>
+          </div>
+          <div>
+            <span class="small">PP</span><br>
+            <span class="fairly-big" id="pp"></span>pp
+          </div>
+        </div>
+        <div class="right-column">
+          <div>
+            <span class="small">Avg Acc</span><br>
+            <span class="fairly-big" id="avgAcc"></span>%
+          </div>
+          <div>
+            <span class="small">Total Plays</span><br>
+            <span class="fairly-big" id="totalPlayCount"></span>
+          </div>
+          <div>
+            <span class="small">Ranked Plays</span><br>
+            <span class="fairly-big" id="rankedPlayCount"></span>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- #endregion -->
 
