@@ -51,7 +51,9 @@ async function getScoreSaberData(scoresaberId) {
     const data = await response.json();
 
     // Return the data
+    console.log(data);
     return {
+        playerName: data.playerInfo.playerName,
         pp: data.playerInfo.pp,
         rank: data.playerInfo.rank,
         countryRank: data.playerInfo.countryRank,
