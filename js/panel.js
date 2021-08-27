@@ -19,6 +19,8 @@ hookOnGlobalConfigChanged(() => {
       $("#countryRank").text(playerData.countryRank);
       $("#pp").text(playerData.pp);
       $("#avgAcc").text( Math.round(playerData.avgAcc * 100) / 100);
+      $("#rankedPlayCount").text(playerData.rankedPlayCount);
+      $("#totalPlayCount").text(playerData.totalPlayCount);
     });
 
 	}

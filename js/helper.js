@@ -60,6 +60,8 @@ async function getScoreSaberData(scoresaberId) {
         country: data.playerInfo.country,
         avatar: data.playerInfo.avatar,
         avgAcc: data.scoreStats.averageRankedAccuracy,
+        rankedPlayCount: data.scoreStats.rankedPlayCount,
+        totalPlayCount: data.scoreStats.totalPlayCount,
     }
 }
 // #endregion
