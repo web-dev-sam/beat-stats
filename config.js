@@ -18,27 +18,26 @@ twitch.onAuthorized((auth) => {
 });
 
 
-// when the config changes, update the panel! 
-twitch.configuration.onChanged(function () {
-  
-  if (twitch.configuration.broadcaster) {
-    console.log("Data", twitch.configuration.broadcaster);
-  } else {
-    console.log("First Time setting up");
-  }
-  
+document.getElementById('btn-scoresaber').addEventListener('click', evt => {
+	twitch.ext.configuration.set(
+		'broadcaster', "v1_scoreSaberId",
+		[$(`[name="scoresaber"]`).val()].join('|')
+	)
+  document.getElementById('btn-scoresaber').style.display = 'none';
 })
 
-// Function to save the streamer's WYR options  
-$(function() {
-  $("#btn-scoresaber").click(function(e){
 
-    // Save data
-    twitch.configuration.set("broadcaster", "1", 
-      JSON.stringify({
-        scoresaber: $(`[name="scoresaber"]`).val()
-      })
-    );
+// Start-Up:
+hookOnAuthorized()
+hookOnContextChanged()
+hookOnGlobalConfigChanged((globalConf) => {
+	let broadcasterConfig = twitch.ext.configuration.broadcaster
 
-  })  
+	if (broadcasterConfig) {
+    console.log("Data", twitch.configuration.broadcaster);
+		let [id] = parseConfigStr(broadcasterConfig, [null])
+		
+    console.log(id);
+	}
+  console.log("STUPID TWITCH");
 })
