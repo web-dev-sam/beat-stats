@@ -20,15 +20,9 @@ function hookOnGlobalConfigChanged(callback = null) {
     twitch.ext.configuration.onChanged(() => {
         let globalConfig = twitch.ext.configuration.global
         if (globalConfig) {
-            let [sentryDSN, globalCount] = parseConfigStr(globalConfig, [null, 186300])
-            globalCount = (+globalCount)
-
-            if (callback) {
-                callback({
-                    globalCount: globalCount
-                })
-            }
-        }
+            console.log("WTF");
+            callback()
+        } else console.log("STUPID ZWICH")
     })
 }
 

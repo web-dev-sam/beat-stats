@@ -4,7 +4,7 @@ var options = []
 // Start-Up:
 hookOnAuthorized()
 hookOnContextChanged()
-hookOnGlobalConfigChanged((globalConf) => {
+hookOnGlobalConfigChanged(() => {
 	let broadcasterConfig = twitch.ext.configuration.broadcaster
 
   if (twitch.configuration.broadcaster) {
