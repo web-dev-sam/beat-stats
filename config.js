@@ -6,6 +6,8 @@ document.getElementById('btn-scoresaber').addEventListener('click', evt => {
 		'broadcaster', "v1_scoreSaberId",
 		[$(`[name="scoresaber"]`).val()].join('|')
 	)
+  
+  console.log("twitch.ext.configuration.broadcaster should exist:", twitch.ext.configuration);
   document.getElementById('btn-scoresaber').style.display = 'none';
 })
 
@@ -13,14 +15,11 @@ document.getElementById('btn-scoresaber').addEventListener('click', evt => {
 // Start-Up:
 hookOnAuthorized()
 hookOnContextChanged()
-hookOnGlobalConfigChanged((globalConf) => {
+hookOnGlobalConfigChanged(() => {
 	let broadcasterConfig = twitch.ext.configuration.broadcaster
 
 	if (broadcasterConfig) {
-    console.log("Data", twitch.configuration.broadcaster);
+    console.log("Data", twitch.ext.configuration.broadcaster);
 		let [id] = parseConfigStr(broadcasterConfig, [null])
-		
-    console.log(id);
 	}
-  console.log("STUPID TWITCH");
 })

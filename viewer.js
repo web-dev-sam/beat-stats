@@ -7,14 +7,15 @@ hookOnContextChanged()
 hookOnGlobalConfigChanged(() => {
 	let broadcasterConfig = twitch.ext.configuration.broadcaster
 
-  if (twitch.configuration.broadcaster) {
-    console.log("Data", twitch.configuration.broadcaster);
-		let [id] = parseConfigStr(broadcasterConfig, [null])
-    console.log(id);
-  } else {
-    console.log("STUPID TWITCH");
-  }
+	if (broadcasterConfig) {
+		const [scoresaberUrl] = parseConfigStr(broadcasterConfig, [null]);
+    const scoresaberId = scoresaberUrl.match(/\d+/g)[0];
+    console.log("Scoresaber ID", scoresaberId);
 
+    doStuff({
+      scoresaber: scoresaberId
+    })
+	}
 })
 
 
@@ -25,7 +26,7 @@ hookOnGlobalConfigChanged(() => {
 function doStuff(config) {
 
   // Get data from url
-  fetch(`https://new.scoresaber.com/api/player/${config.scoresaber.match(/\d+/g)[0]}/full`).then(async response => {
+  fetch(`https://new.scoresaber.com/api/player/${config.scoresaber}/full`).then(async response => {
 
     // Get the text from the response
     const data = await response.json();

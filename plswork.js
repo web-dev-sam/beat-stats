@@ -18,11 +18,11 @@ function parseConfigStr(config, fallbackValues) {
 
 function hookOnGlobalConfigChanged(callback = null) {
     twitch.ext.configuration.onChanged(() => {
-        let globalConfig = twitch.ext.configuration.global
+        let globalConfig = twitch.ext.configuration.broadcaster
         if (globalConfig) {
-            console.log("WTF");
             callback()
-        } else console.log("STUPID ZWICH")
+        }
+
     })
 }
 
