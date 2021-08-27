@@ -21,8 +21,15 @@ twitch.onAuthorized((auth) => {
 
 // when the config changes, update the panel! 
 twitch.configuration.onChanged(function () {
-  const config = JSON.parse(twitch.configuration.broadcaster.content)
-  options = config
+  
+  
+  if (twitch.configuration.broadcaster) {
+    console.log("Data", twitch.configuration.broadcaster);
+  } else {
+    console.log("First Time use");
+  }
+  //const config = JSON.parse(twitch.configuration.broadcaster.content)
+  //options = config
 
   // Get data from url
   fetch(`https://new.scoresaber.com/api/player/${options.scoresaber.match(/\d+/g)[0]}/full`).then(async response => {
