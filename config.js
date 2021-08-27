@@ -29,20 +29,16 @@ twitch.configuration.onChanged(function () {
   
 })
 
-
-function updateConfig() {
-  //twitch.configuration.set("broadcaster", "1", JSON.stringify(options))
-}
-
-
 // Function to save the streamer's WYR options  
-$(function(){
+$(function() {
   $("#btn-scoresaber").click(function(e){
-    options = {
-			scoresaber: $(`[name="scoresaber"]`).val()
-		}
 
-		updateConfig()
-    e.preventDefault()
+    // Save data
+    twitch.configuration.set("broadcaster", "1", 
+      JSON.stringify({
+        scoresaber: $(`[name="scoresaber"]`).val()
+      })
+    );
+
   })  
 })
