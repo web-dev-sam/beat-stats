@@ -64,4 +64,16 @@ a:hover {
     border: 0;
     outline: 0;
     padding: 22px 18px;
+    margin-top: 42px;
+}
+.ptag {
+    color: rgb(209, 209, 209);
+    width: 400px;
+    margin: auto;
+    margin-top: 16px;
+    font-size: small;
+}
+
+body {
+    overflow: hidden;
 }
