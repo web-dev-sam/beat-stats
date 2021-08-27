@@ -1,15 +1,6 @@
 var options = []
 
 
-document.getElementById('btn-scoresaber').addEventListener('click', evt => {
-	twitch.ext.configuration.set(
-		'broadcaster', "v1_scoreSaberId",
-		[$(`[name="scoresaber"]`).val()].join('|')
-	)
-  document.getElementById('btn-scoresaber').style.display = 'none';
-})
-
-
 // Start-Up:
 hookOnAuthorized()
 hookOnContextChanged()
@@ -23,7 +14,7 @@ hookOnGlobalConfigChanged((globalConf) => {
   } else {
     console.log("STUPID TWITCH");
   }
-  
+
 })
 
 
