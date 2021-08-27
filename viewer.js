@@ -33,9 +33,16 @@ twitch.configuration.onChanged(function () {
 
     // Get the song name from the json data
     const pp = data.playerInfo.pp;
+    const rank = data.playerInfo.rank;
+    const crank = data.playerInfo.countryRank;
+    const country = data.playerInfo.country;
+    const avatar = data.playerInfo.avatar;
+    const avgAcc = data.scoreStats.averageRankedAccuracy;
+
 
     // Display song name in html
-    $(".boody").text(pp);
+    $("#name").text(data.playerInfo.playerName);
+    $("#rank").text(rank);
   })
 })
 

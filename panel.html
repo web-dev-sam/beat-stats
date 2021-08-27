@@ -5,6 +5,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
   </head>
   <body style="font-family: 'Quicksand', Helvetica, Arial, sans-serif;margin:0px !important;overflow: hidden !important;">
 
@@ -18,6 +19,7 @@
         font-size: large;
         font-weight: 600;
         margin: 20px auto 0 auto;
+        width: 100%;
       }
       .bg-imooge {
         height: 100vh;
@@ -27,17 +29,22 @@
         overflow: hidden;
       }
       .sexy-blur{
-        backdrop-filter: blur(1px);
+        backdrop-filter: blur(10px);
         width: 100%;
         height: 100vh;
-        background-color: #000000aa;
+        background-color: #000000bb;
       }
-    </style>
+      #name {
+        text-align: center;
+        margin: 20px auto;
+      }
+      </style>
 
     <img class="bg-imooge" src="https://steamuserimages-a.akamaihd.net/ugc/940586530515504757/CDDE77CB810474E1C07B945E40AE4713141AFD76/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false" alt="">
     <div class="sexy-blur"></div>
     <div class="boody">
-      Hi booody
+      <h2 id="name"></h2>
+      <div><i class="fas fa-medal"></i><span id="rank"></span></div>
     </div>
 
 
