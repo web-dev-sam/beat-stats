@@ -21,51 +21,23 @@ twitch.onAuthorized((auth) => {
 // when the config changes, save the new changes! 
 twitch.configuration.onChanged(function(){
   console.log(twitch.configuration.broadcaster)
-  console.log("in onChanged")
-  if(twitch.configuration.broadcaster){
-    console.log("config exists")
-    try{
-      var config = JSON.parse(twitch.configuration.broadcaster.content)
-      //console.log(typeof config)
-      if(typeof config === "object"){
-        options = config
-        updateOptions()
-        //console.log(options)
-      }else{
-        console.log('invalid config')
-      }
-    }catch(e){
-      console.log('invalid config')
-    }
-  }
+	options = JSON.parse(twitch.configuration.broadcaster.content);
+
+	$(`[name="scoresaber"]`).val(options.scoresaber);
 })
 
-function updateConfig(){
-  //console.log('in set')
-  //console.log(options)
-  //console.log(typeof options)
-  //console.log(JSON.stringify(options))
+function updateConfig() {
   twitch.configuration.set("broadcaster", "1", JSON.stringify(options))
-  //console.log("has it been set?")
-  //console.log(twitch.configuration.broadcaster.content)
-
 }
 
 // Function to save the streamer's WYR options  
 $(function(){
-  $("#form").submit(function(e){
-    options = []
-    $('input[type=checkbox]').each(function () {
-      if (this.checked) {
-        var option = $(this).val();
-        //console.log(typeof option)
-        //console.log(options.push(value))
-        options.push(option)
-      }
-    })
-    //console.log(options)
-    //updateOptions()
+  $("#btn-scoresaber").click(function(e){
+    options = {
+			scoresaber: $(`[name="scoresaber"]`).val()
+		}
+
+		updateConfig()
     e.preventDefault()
-    //console.log(options)
   })  
 })
