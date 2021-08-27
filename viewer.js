@@ -1,30 +1,30 @@
-var token, userId;
-
-// so we don't have to write this out everytime #efficency
-const twitch = window.Twitch.ext;
-
-// callback called when context of an extension is fired 
-twitch.onContext(context => {});
-
-// onAuthorized callback called each time JWT is fired
-twitch.onAuthorized(auth => {
-  token = auth.token; //JWT passed to backend for authentication 
-  userId = auth.userId; //opaque userID
-});
+var options = []
 
 
+document.getElementById('btn-scoresaber').addEventListener('click', evt => {
+	twitch.ext.configuration.set(
+		'broadcaster', "v1_scoreSaberId",
+		[$(`[name="scoresaber"]`).val()].join('|')
+	)
+  document.getElementById('btn-scoresaber').style.display = 'none';
+})
 
-// when the config changes, update the panel! 
-twitch.configuration.onChanged(function () {
-  
+
+// Start-Up:
+hookOnAuthorized()
+hookOnContextChanged()
+hookOnGlobalConfigChanged((globalConf) => {
+	let broadcasterConfig = twitch.ext.configuration.broadcaster
+
   if (twitch.configuration.broadcaster) {
     console.log("Data", twitch.configuration.broadcaster);
+		let [id] = parseConfigStr(broadcasterConfig, [null])
+    console.log(id);
   } else {
-    $("#config-warning").show();
+    console.log("STUPID TWITCH");
   }
   
 })
-
 
 
 
