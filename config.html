@@ -25,13 +25,56 @@
         </div>
         <div class="container__item">
           <form class="form">
-            <label class="label">Background Picture</label>
+            <label class="label">Background Picture (optional)</label>
             <input type="text" class="form__field" placeholder="Image URL" name="background-pic" />
           </form>
+        </div>
+        <div class="container__item checkboxes__item">
+          <label class="label">Statistics</label>
+          <label class="ptag stats-label">What ScoreSaber statistics do you want to share to your viewers?</label>
+          <div id="checkboxes">
+            <div>
+              <div class="boxes">
+                <input type="checkbox" id="box-1" checked>
+                <label for="box-1">Global Rank</label>
+              
+                <input type="checkbox" id="box-2" checked>
+                <label for="box-2">Local Rank</label>
+              
+                <input type="checkbox" id="box-3" checked>
+                <label for="box-3">PP</label>
+
+                <input type="checkbox" id="box-9" title="Not yet supported" disabled>
+                <label for="box-9">Top Percentage</label>
+
+                <input type="checkbox" id="box-10" title="Not yet supported" disabled>
+                <label for="box-10">Top Ranked Play</label>
+              </div>
+            </div>
+            <div>
+              <div class="boxes">
+                <input type="checkbox" id="box-4" checked>
+                <label for="box-4">Average Accuracy</label>
+              
+                <input type="checkbox" id="box-5" checked>
+                <label for="box-5">Total Plays</label>
+              
+                <input type="checkbox" id="box-6" checked>
+                <label for="box-6">Ranked Plays</label>
+              
+                <input type="checkbox" id="box-7" title="Not yet supported" disabled>
+                <label for="box-7">Total Ranked Score</label>
+              
+                <input type="checkbox" id="box-8" title="Not yet supported" disabled>
+                <label for="box-8">Total Score</label>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="container__item" style="width: 396px;">
           <button type="button" class="btn btn--primary btn--inside uppercase" id="btn-save">Save</button>
         </div>
+        
       </div>
     </form>
     <!-- #endregion -->
