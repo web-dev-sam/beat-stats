@@ -1,58 +1,37 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <!-- #region Yoor head buddy -->
     <title>Viewer Page</title>
+    <meta charset="utf-8">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="font-awesome.css">
+    <link rel="stylesheet" href="css/panel.css">
+    <!-- #endregion -->
   </head>
-  <body style="font-family: 'Quicksand', Helvetica, Arial, sans-serif;margin:0px !important;overflow: hidden !important;">
+  <body>
 
-    <style>
-      .boody {
-        position: absolute;
-        top: 0;
-        left: 0;
-        color: white;
-        text-align: center;
-        font-size: large;
-        font-weight: 600;
-        margin: 20px auto 0 auto;
-        width: 100%;
-      }
-      .bg-imooge {
-        height: 100vh;
-        position: absolute;
-        top: 0;
-        left: 0;
-        overflow: hidden;
-      }
-      .sexy-blur{
-        backdrop-filter: blur(10px);
-        width: 100%;
-        height: 100vh;
-        background-color: #000000bb;
-      }
-      #name {
-        text-align: center;
-        margin: 20px auto;
-      }
-      </style>
 
+    <!-- #region Everything ones eyes can witness -->
     <img class="bg-imooge" src="https://steamuserimages-a.akamaihd.net/ugc/940586530515504757/CDDE77CB810474E1C07B945E40AE4713141AFD76/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false" alt="">
     <div class="sexy-blur"></div>
     <div class="boody">
       <h2 id="name"></h2>
       <p id="config-warning" style="display: none;">Please setup your Config</p>
       <div><i class="fas fa-medal"></i><span id="rank"></span></div>
+      <div>PP: <i class="fas fa-table"></i><span id="pp"></span></div>
     </div>
+    <!-- #endregion -->
 
 
+    <!-- #region Scripts -->
     <script src="https://extension-files.twitch.tv/helper/v1/twitch-ext.min.js"></script>
-    <script src="jquery-3.6.0.min.js"></script>
-    <script src="plswork.js" type="text/javascript"></script>
-    <script src="viewer.js" type="text/javascript"></script>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/helper.js" type="text/javascript"></script>
+    <script src="js/panel.js" type="text/javascript"></script>
+    <!-- #endregion -->
   </body>
 </html>
 

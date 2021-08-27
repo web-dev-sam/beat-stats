@@ -1,6 +1,7 @@
 
 const twitch = window.Twitch;
 
+// #region Stupid Twitch API
 function parseConfigStr(config, fallbackValues) {
     if (!config) {
         return fallbackValues
@@ -39,3 +40,24 @@ function hookOnContextChanged(callback = null) {
         }
     })
 }
+// #endregion
+
+
+// #region ScoreSaber API
+async function getScoreSaberData(scoresaberId) {
+
+    // Get data from scoresaber
+    const response = await fetch(`https://new.scoresaber.com/api/player/${scoresaberId}/full`)
+    const data = await response.json();
+
+    // Return the data
+    return {
+        pp: data.playerInfo.pp,
+        rank: data.playerInfo.rank,
+        countryRank: data.playerInfo.countryRank,
+        country: data.playerInfo.country,
+        avatar: data.playerInfo.avatar,
+        avgAcc: data.scoreStats.averageRankedAccuracy,
+    }
+}
+// #endregion

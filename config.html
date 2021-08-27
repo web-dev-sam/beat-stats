@@ -1,33 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+  <head>
+    <!-- #region Yoor head buddy -->
+    <title>Configuration Page</title>
+    <meta charset="utf-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/config.css">
+    <!-- #endregion -->
+  </head>
+  <body>
 
-<head>
-  <title>Configuration Page </title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="config.css">
-</head>
-<body>
-  <script src="https://extension-files.twitch.tv/helper/v1/twitch-ext.min.js"></script>
 
-
-  <form id="form">
-    <div class="container">
-      <div class="container__item">
-        <form class="form">
-          <input type="email" class="form__field" placeholder="ScoreSaber Id" name="scoresaber" />
-          <button type="button" class="btn btn--primary btn--inside uppercase" id="btn-scoresaber">Use</button>
-        </form>
+    <!-- #region Everything ones eyes can witness -->
+    <form id="form">
+      <div class="container">
+        <div class="container__item">
+          <form class="form">
+            <input type="email" class="form__field" placeholder="ScoreSaber Id" name="scoresaber" />
+            <button type="button" class="btn btn--primary btn--inside uppercase" id="btn-scoresaber">Use</button>
+          </form>
+        </div>
       </div>
-    </div>
-  </form>
+    </form>
+    <!-- #endregion -->
 
 
-
-  <script src="jquery-3.6.0.min.js"></script>
-  <script src="plswork.js" type="text/javascript"></script>
-  <script src="config.js" type="text/javascript"></script>
-</body>
-
+    <!-- #region Scripts -->
+    <script src="https://extension-files.twitch.tv/helper/v1/twitch-ext.min.js"></script>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/helper.js" type="text/javascript"></script>
+    <script src="js/config.js" type="text/javascript"></script>
+    <!-- #endregion -->
+  </body>
 </html>
