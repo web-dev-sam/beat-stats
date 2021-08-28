@@ -75,7 +75,7 @@ function buildTopPercentage(value) {
 function buildTopRankedPlay(value) {
     return `
         <div>
-            <span class="small">Top Ranked Play</span><br>
+            <span class="small">Top PP Play</span><br>
             <span class="fairly-big" id="topRankedPlay">${value}</span>
         </div>
     `;
