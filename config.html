@@ -17,64 +17,70 @@
     <form id="form">
       <div class="container">
         <div class="container__item">
+          <label class="label">ScoreSaber Id</label>
+          <input bsconfig="scoresaberId" bsaction="val" type="text" class="form__field" placeholder="ScoreSaber Id" />
+          <label class="error"></label>
+          <label class="ptag">To get your scoresaber ID go to <a href="https://scoresaber.com/global" target="_blank">scoresaber.com</a> and find your profile then copy and paste the link in the box above</label>
+        </div>
+        <div class="container__item hidden">
+          <label class="label">Background Picture (optional)</label>
+          <input bsconfig="bgPic" bsaction="val" type="text" class="form__field" placeholder="Image URL" name="background-pic" />
+          <label class="error"></label>
+        </div>
+        <div class="container__item hidden">
           <form class="form">
-            <label class="label">ScoreSaber Id</label>
-            <input type="text" class="form__field" placeholder="ScoreSaber Id" name="scoresaber" />
-            <label class="ptag">To get your scoresaber ID go to <a href="https://new.scoresaber.com/" target="_blank">scoresaber.com</a> and find your profile then copy and paste the link in the the box above</label>
+            <label class="label">Background Blur</label>
+            <input bsconfig="blur" bsaction="val" type="number" min="0" max="25" class="form__field" placeholder="5" />
+            <label class="error"></label>
           </form>
         </div>
-        <div class="container__item">
-          <form class="form">
-            <label class="label">Background Picture (optional)</label>
-            <input type="text" class="form__field" placeholder="Image URL" name="background-pic" />
-          </form>
-        </div>
-        <div class="container__item checkboxes__item">
+        <div class="container__item checkboxes__item hidden">
           <label class="label">Statistics</label>
           <label class="ptag stats-label">What ScoreSaber statistics do you want to share to your viewers?</label>
           <div id="checkboxes">
             <div>
               <div class="boxes">
-                <input type="checkbox" id="box-1" checked>
+                <input bsconfig="globalRank" bsaction="chkd" type="checkbox" id="box-1" checked>
                 <label for="box-1">Global Rank</label>
               
-                <input type="checkbox" id="box-2" checked>
+                <input bsconfig="localRank" bsaction="chkd" type="checkbox" id="box-2" checked>
                 <label for="box-2">Local Rank</label>
               
-                <input type="checkbox" id="box-3" checked>
+                <input bsconfig="pp" bsaction="chkd" type="checkbox" id="box-3" checked>
                 <label for="box-3">PP</label>
 
-                <input type="checkbox" id="box-9" title="Not yet supported" disabled>
+                <input bsconfig="topPercentage" bsaction="chkd" type="checkbox" id="box-9" title="Not yet supported" disabled>
                 <label for="box-9">Top Percentage</label>
 
-                <input type="checkbox" id="box-10" title="Not yet supported" disabled>
+                <input bsconfig="topRankedPlay" bsaction="chkd" type="checkbox" id="box-10" title="Not yet supported" disabled>
                 <label for="box-10">Top Ranked Play</label>
               </div>
             </div>
             <div>
               <div class="boxes">
-                <input type="checkbox" id="box-4" checked>
+                <input bsconfig="avgAcc" bsaction="chkd" type="checkbox" id="box-4" checked>
                 <label for="box-4">Average Accuracy</label>
               
-                <input type="checkbox" id="box-5" checked>
+                <input bsconfig="totalPlays" bsaction="chkd" type="checkbox" id="box-5" checked>
                 <label for="box-5">Total Plays</label>
               
-                <input type="checkbox" id="box-6" checked>
+                <input bsconfig="rankedPlays" bsaction="chkd" type="checkbox" id="box-6" checked>
                 <label for="box-6">Ranked Plays</label>
               
-                <input type="checkbox" id="box-7" title="Not yet supported" disabled>
+                <input bsconfig="totalScore" bsaction="chkd" type="checkbox" id="box-7">
                 <label for="box-7">Total Ranked Score</label>
               
-                <input type="checkbox" id="box-8" title="Not yet supported" disabled>
+                <input bsconfig="rankedScore" bsaction="chkd" type="checkbox" id="box-8">
                 <label for="box-8">Total Score</label>
               </div>
             </div>
           </div>
         </div>
+      </div>
+      <div class="btn-wrapper">
         <div class="container__item" style="width: 396px;">
           <button type="button" class="btn btn--primary btn--inside uppercase" id="btn-save">Save</button>
         </div>
-        
       </div>
     </form>
     <!-- #endregion -->
@@ -83,8 +89,11 @@
     <!-- #region Scripts -->
     <script src="https://extension-files.twitch.tv/helper/v1/twitch-ext.min.js"></script>
     <script src="js/jquery-3.6.0.min.js"></script>
-    <script src="js/helper.js" type="text/javascript"></script>
-    <script src="js/config.js" type="text/javascript"></script>
+    <script src="js/DemoDefaults.js"></script>
+    <script src="js/Helper.js" type="text/javascript"></script>
+    <script src="js/ScoreSaber.js" type="text/javascript"></script>
+    <script src="js/Configuration.js" type="text/javascript"></script>
+    <script src="js/ConfigView.js" type="text/javascript"></script>
     <!-- #endregion -->
   </body>
 </html>

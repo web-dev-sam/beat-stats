@@ -3,8 +3,7 @@
 }
 
 html,
-body,
-.container {
+body {
     height: 100%;
 }
 
@@ -20,6 +19,9 @@ a:hover {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 85vh;
 }
 
 .uppercase {
@@ -83,7 +85,7 @@ label {
 }
 
 label.label {
-    margin-top: 42px;
+    margin-top: 30px;
     margin-bottom: 8px;
     color: white;
 }
@@ -150,4 +152,21 @@ input[type="checkbox"]:checked + label:before {
 
 #checkboxes > div {
     width: 50%;
+}
+
+label.error {
+    color: red;
+    font-size: small;
+    margin-top: 4px;
+}
+
+.btn-wrapper {
+    width: 396px;
+    margin: auto;
+    height: 20vh;
+    overflow: hidden;
+}
+
+.hidden {
+    display: none;
 }

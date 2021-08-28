@@ -1,6 +1,14 @@
 
 const twitch = window.Twitch;
 
+$.fn.extend({
+    chkd: function (value) {
+        if (value !== undefined)
+            return this.prop('checked', value);
+        return this.is(':checked');
+    }
+});
+
 // #region Stupid Twitch API
 function parseConfigStr(config, fallbackValues) {
     if (!config) {
