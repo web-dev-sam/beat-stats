@@ -62,11 +62,8 @@ class Configuration {
     static get(segment) {
         const data = twitch.ext.configuration[segment];
         console.log(data);
-        if (data && data.version === Configuration.__getVersion(segment)) {
+        if (data) {
             return JSON.parse(data.content);
-        } else {
-            console.log("Configuration Version Mismatch! Using Defaults...");
-            Configuration.setDefaults(segment);
         }
     }
 
