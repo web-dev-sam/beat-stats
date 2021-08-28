@@ -29,5 +29,20 @@ const demoDefaults = {
         "rankedPlays": false,
         "totalScore": false,
         "rankedScore": false,
+    },
+    "76561198362923485": {
+        "scoresaberId": "76561198362923485",
+        "blur": "4",
+        "bgPic": "",
+        "globalRank": true,
+        "localRank": true,
+        "pp": true,
+        "topRankedPlay": true,
+        "topPercentage": false,
+        "avgAcc": true,
+        "totalPlays": true,
+        "rankedPlays": false,
+        "totalScore": false,
+        "rankedScore": false,
     }
 }
