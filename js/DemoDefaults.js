@@ -1,6 +1,6 @@
 
 const demoDefaults = {
-    "76561198038084750": {
+    "76561198038084750": { // Alice
         "scoresaberId": "76561198038084750",
         "blur": "1",
         "bgPic": "assets/demo/76561198038084750.jpg",
@@ -15,7 +15,7 @@ const demoDefaults = {
         "totalScore": false,
         "rankedScore": false,
     },
-    "76561198101888037": {
+    "76561198101888037": { // WulfgarinDnD
         "scoresaberId": "76561198101888037",
         "blur": "8",
         "bgPic": "",
@@ -30,7 +30,7 @@ const demoDefaults = {
         "totalScore": false,
         "rankedScore": false,
     },
-    "76561198362923485": {
+    "76561198362923485": { // Tseska
         "scoresaberId": "76561198362923485",
         "blur": "4",
         "bgPic": "",
@@ -45,7 +45,7 @@ const demoDefaults = {
         "totalScore": false,
         "rankedScore": false,
     },
-    "76561198333869741": { //Cerret
+    "76561198333869741": { // Cerret
         "scoresaberId": "76561198333869741",
         "blur": "5",
         "bgPic": "",
@@ -60,7 +60,7 @@ const demoDefaults = {
         "totalScore": false,
         "rankedScore": false,
     },
-    "76561198155741795": { //DaddyDawsonTV
+    "76561198155741795": { // DaddyDawsonTV
         "scoresaberId": "76561198155741795",
         "blur": "3",
         "bgPic": "",
@@ -71,6 +71,51 @@ const demoDefaults = {
         "topPercentage": true,
         "avgAcc": true,
         "totalPlays": false,
+        "rankedPlays": false,
+        "totalScore": false,
+        "rankedScore": false,
+    },
+    "76561198401546982": { // Zephyr
+        "scoresaberId": "76561198401546982",
+        "blur": "8",
+        "bgPic": "",
+        "globalRank": true,
+        "localRank": true,
+        "pp": true,
+        "topRankedPlay": true,
+        "topPercentage": true,
+        "avgAcc": false,
+        "totalPlays": true,
+        "rankedPlays": false,
+        "totalScore": false,
+        "rankedScore": false,
+    },
+    "76561197995162898": { // Electrostats
+        "scoresaberId": "76561197995162898",
+        "blur": "0",
+        "bgPic": "assets/demo/76561197995162898.jpg",
+        "globalRank": true,
+        "localRank": true,
+        "pp": true,
+        "topRankedPlay": true,
+        "topPercentage": false,
+        "avgAcc": true,
+        "totalPlays": true,
+        "rankedPlays": false,
+        "totalScore": false,
+        "rankedScore": false,
+    },
+    "76561198154190170": { // Tieeli
+        "scoresaberId": "76561198154190170",
+        "blur": "0",
+        "bgPic": "assets/demo/76561198154190170.jpg",
+        "globalRank": true,
+        "localRank": true,
+        "pp": true,
+        "topRankedPlay": true,
+        "topPercentage": false,
+        "avgAcc": true,
+        "totalPlays": true,
         "rankedPlays": false,
         "totalScore": false,
         "rankedScore": false,
