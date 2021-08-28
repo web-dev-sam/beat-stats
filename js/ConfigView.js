@@ -39,7 +39,6 @@ class ConfigView {
      */
     save() {
         const me = this;
-        const firstTimeSetup = !Configuration.get("broadcaster");
         $(`label.error`).text("")
         return new Promise(async (resolve, reject) => {
 

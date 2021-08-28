@@ -65,8 +65,8 @@ function buildRankedPlays(value) {
 function buildTopPercentage(value) {
     return `
         <div>
-            <span class="small">Top %</span><br>
-            <span class="fairly-big" id="topPercentage">${value}</span>
+            <span class="small">Top Percentage</span><br>
+            <span class="fairly-big" id="topPercentage">${value}</span>%
         </div>
     `;
 }
@@ -184,7 +184,7 @@ function buildStats(values, settings) {
 
 hookOnAuthorized()
 hookOnContextChanged()
-hookOnGlobalConfigChanged(() => {
+hookOnGlobalConfigChanged(async () => {
 
     const data = Configuration.get("broadcaster");
     console.log(data);
@@ -193,32 +193,35 @@ hookOnGlobalConfigChanged(() => {
 
     // Get data and display everything
     const scoresaber = new ScoreSaber(data.scoresaberId);
-    scoresaber.getPlayerData().then(playerData => {
-        console.log(playerData)
-        
-        buildStats(data, {
-            globalRank:     playerData.playerInfo.rank,
-            localRank:      playerData.playerInfo.countryRank,
-            pp:             playerData.playerInfo.pp,
-            topPercentage:  "69",
-            topRankedPlay:  "69",
-            avgAcc:         Math.round(playerData.scoreStats.averageRankedAccuracy * 100) / 100,
-            totalPlays:     playerData.scoreStats.totalPlayCount,
-            rankedPlays:    playerData.scoreStats.rankedPlayCount,
-            totalScore:     playerData.scoreStats.totalScore,
-            rankedScore:    playerData.scoreStats.totalRankedScore
-        });
+    const playerData = await scoresaber.getPlayerData();
+    console.log(playerData)
 
-        $("#name").text(playerData.playerInfo.playerName);
-        $("#flags").attr("src", "https://www.countryflags.io/" + playerData.playerInfo.country + "/shiny/16.png")
-        $("#profiePic").css({
-            "background-image": "url(" + (data.bgPic ? data.bgPic : "https://new.scoresaber.com" + playerData.playerInfo.avatar) + ")",
-            "background-size": "cover",
-            "background-repeat": "no-repeat",
-            "background-position": "50% 50%",
-        });
-        $(".sexy-blur").css("backdrop-filter", `blur(${data.blur}px)`)
+    const scores = await scoresaber.getTopPlays();
+    const topPlay = scores.scores[0].pp;
+    
+    buildStats(data, {
+        globalRank:     playerData.playerInfo.rank,
+        localRank:      playerData.playerInfo.countryRank,
+        pp:             playerData.playerInfo.pp,
+        topPercentage:  Math.ceil(playerData.playerInfo.rank * 10000 / 174000) / 100,
+        topRankedPlay:  Math.ceil(topPlay * 100) / 100,
+        avgAcc:         Math.round(playerData.scoreStats.averageRankedAccuracy * 100) / 100,
+        totalPlays:     playerData.scoreStats.totalPlayCount,
+        rankedPlays:    playerData.scoreStats.rankedPlayCount,
+        totalScore:     playerData.scoreStats.totalScore,
+        rankedScore:    playerData.scoreStats.totalRankedScore
     });
+
+    $("#name").text(playerData.playerInfo.playerName);
+    $("#flags").attr("src", "https://www.countryflags.io/" + playerData.playerInfo.country + "/shiny/16.png")
+    $("#profiePic").css({
+        "background-image": "url(" + (data.bgPic ? data.bgPic : "https://new.scoresaber.com" + playerData.playerInfo.avatar) + ")",
+        "background-size": "cover",
+        "background-repeat": "no-repeat",
+        "background-position": "50% 50%",
+    });
+    $(".sexy-blur").css("backdrop-filter", `blur(${data.blur}px)`)
+
 })
 
 
