@@ -81,12 +81,12 @@ class Configuration {
     static setDefaults(segment, scoresaberId) {
         if (scoresaberId && demoDefaults[scoresaberId]) {
             console.log("defaults", Object.assign({}, Configuration.STRUCTURE[segment]["data"], demoDefaults[scoresaberId]))
-            const config = Object.assign({}, Configuration.STRUCTURE[segment]["data"], demoDefaults[scoresaberId])
-            config.scoresaberId = scoresaberId;
-            Configuration.set(segment, config);
+            Configuration.set(segment, Object.assign({}, Configuration.STRUCTURE[segment]["data"], demoDefaults[scoresaberId]));
             return;
         }
-        Configuration.set(segment, Configuration.STRUCTURE[segment]["data"]);
+        const config = Configuration.STRUCTURE[segment]["data"];
+        config.scoresaberId = scoresaberId;
+        Configuration.set(segment, config);
     }
 
 
