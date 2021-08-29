@@ -1,15 +1,14 @@
 {
-  "name": "step2",
-  "version": "1.0.0",
-  "description": "",
+  "name": "beat-stats",
+  "version": "0.0.1",
+  "description": "Add a twitch panel to show your current ranking, pp, accuracy, and other data from scoresaber.com to your channel page.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "webpack --mode=development --watch",
     "build": "webpack --mode=production"
   },
   "keywords": [],
-  "author": "",
+  "author": "MindLabor and rnr321_real",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
