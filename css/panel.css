@@ -21,7 +21,7 @@ body {
 
 .right-column {
     flex: 0 0 33%;
-    line-height: 23px;
+    line-height: 22px;
 }
 
 .right-column > div, .left-column > div {
