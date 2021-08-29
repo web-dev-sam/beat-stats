@@ -24,6 +24,7 @@ const {
 } = require('./Helper.js');
 const ScoreSaber = require('./ScoreSaber.js');
 const Configuration = require('./Configuration.js');
+const demoDefaults = require('./DemoDefaults.js');
 
 class ConfigView {
 
@@ -73,7 +74,7 @@ class ConfigView {
             if (me.hasUserChanged()) {
                 //console.log("Scoresaber Id changed!");
                 Configuration.setDefaults("broadcaster", me.formData.scoresaberId);
-                me.showFormData();
+                me.showFormData(me.formData.scoresaberId);
                 me.saving = false;
                 $(".btn-save").html("Save");
                 resolve();
@@ -175,9 +176,8 @@ class ConfigView {
     /**
      * Show all config data to the form
      */
-    showFormData() {
-        const data = Configuration.get("broadcaster");
-        //console.log(data);
+    showFormData(scoreSaberId) {
+        const data = scoreSaberId? demoDefaults[scoreSaberId] : Configuration.get("broadcaster");
         if (!data)
             return;
 
@@ -187,7 +187,7 @@ class ConfigView {
             $(this)[func](data[key]);
         });
         
-        if (data.scoresaberId) {
+        if (data.scoresaberId && !scoreSaberId) {
             $(".container__item").removeClass("hidden");
         }
     }
@@ -203,4 +203,9 @@ hookOnGlobalConfigChanged(_ => {
     const configView = new ConfigView();
     configView.showFormData();
     configView.bindEvents();
+
+    // Uncomment this to empty the config (like for new users)
+    //Configuration.empty();
+
+    console.log()
 })

@@ -47,10 +47,11 @@ class Configuration {
      * @public
      * @static
      */
-    static set(segment, data) {
+    static set(segment, data, version=Math.random()) {
+        version = version || Configuration.__getVersion(segment)
         twitch.ext.configuration.set(
             segment,
-            Configuration.__getVersion(segment), 
+            version, 
             JSON.stringify(data)
         );
     }
@@ -81,13 +82,23 @@ class Configuration {
      */
     static setDefaults(segment, scoresaberId) {
         if (scoresaberId && demoDefaults[scoresaberId]) {
-            //console.log("defaults", Object.assign({}, Configuration.STRUCTURE[segment]["data"], demoDefaults[scoresaberId]))
             Configuration.set(segment, Object.assign({}, Configuration.STRUCTURE[segment]["data"], demoDefaults[scoresaberId]));
             return;
         }
         const config = Configuration.STRUCTURE[segment]["data"];
         config.scoresaberId = scoresaberId;
         Configuration.set(segment, config);
+    }
+
+
+    /**
+     * Empties the configuration object.
+     * @param {string} segment your configuration segment
+     * @public
+     * @static
+     */
+    static empty(segment="broadcaster") {
+        Configuration.set(segment, Configuration.STRUCTURE[segment]["data"]);
     }
 
 
