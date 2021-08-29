@@ -1,5 +1,6 @@
 # Beat Stats
-
+Add a panel to show your current ranking, pp, accuracy, and other data from scoresaber.com to your channel page.
+Also, you can change the theme of your panel to fit your likings.
 
 &nbsp;
 
