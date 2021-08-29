@@ -126,6 +126,12 @@ class ConfigView {
             $(`[bsconfig="scoresaberId"] + label.error`).text(scoreSaberValid.error);
             return false;
         }
+
+        // Check if there are maximum of 8 data panels
+        if ($(`.statistics input:checked`).length > 8) {
+            $(`.stats-label.error`).text("You can only select up to 8 statistic panels!");
+            return false;
+        }
         
         return true;
     }
