@@ -38,7 +38,7 @@ class ConfigView {
         const me = this;
 
         // Save button
-        $("#btn-save").on("click", () => me.save());
+        $(".btn-save").on("click", () => me.save());
     }
 
 
@@ -59,23 +59,23 @@ class ConfigView {
 
             // We are now saving
             me.saving = true;
-            $("#btn-save").html(`Saving...`);
+            $(".btn-save").html(`Saving...`);
 
             // Check for valid input
             const valid = await me.checkForValidInput();
             if (!valid) {
                 me.saving = false;
-                $("#btn-save").html("Save");
+                $(".btn-save").html("Save");
                 resolve();
                 return;
             }
 
             if (me.hasUserChanged()) {
-                console.log("Scoresaber Id changed!");
+                //console.log("Scoresaber Id changed!");
                 Configuration.setDefaults("broadcaster", me.formData.scoresaberId);
                 me.showFormData();
                 me.saving = false;
-                $("#btn-save").html("Save");
+                $(".btn-save").html("Save");
                 resolve();
                 return;
             }
@@ -84,10 +84,10 @@ class ConfigView {
             Configuration.set("broadcaster", me.formData);
 
             // We are no longer saving
-            $("#btn-save").html("Saved");
+            $(".btn-save").html("Saved");
             setTimeout(() => {
                 me.saving = false;
-                $("#btn-save").html("Save");
+                $(".btn-save").html("Save");
             }, 1500);
             resolve();
         });
@@ -177,7 +177,7 @@ class ConfigView {
      */
     showFormData() {
         const data = Configuration.get("broadcaster");
-        console.log(data);
+        //console.log(data);
         if (!data)
             return;
 

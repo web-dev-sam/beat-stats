@@ -65,7 +65,7 @@ class Configuration {
      */
     static get(segment) {
         const data = twitch.ext.configuration[segment];
-        console.log(data);
+        //console.log(data);
         if (data) {
             return JSON.parse(data.content);
         }
@@ -81,7 +81,7 @@ class Configuration {
      */
     static setDefaults(segment, scoresaberId) {
         if (scoresaberId && demoDefaults[scoresaberId]) {
-            console.log("defaults", Object.assign({}, Configuration.STRUCTURE[segment]["data"], demoDefaults[scoresaberId]))
+            //console.log("defaults", Object.assign({}, Configuration.STRUCTURE[segment]["data"], demoDefaults[scoresaberId]))
             Configuration.set(segment, Object.assign({}, Configuration.STRUCTURE[segment]["data"], demoDefaults[scoresaberId]));
             return;
         }

@@ -196,14 +196,14 @@ hookOnContextChanged()
 hookOnGlobalConfigChanged(async () => {
 
     const data = Configuration.get("broadcaster");
-    console.log(data);
+    //console.log(data);
     if (!data)
         return;
 
     // Get data and display everything
     const scoresaber = new ScoreSaber(data.scoresaberId);
     const playerData = await scoresaber.getPlayerData();
-    console.log(playerData)
+    //console.log(playerData)
 
     const scores = await scoresaber.getTopPlays();
     const topPlay = scores.scores[0].pp;
