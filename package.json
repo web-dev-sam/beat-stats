@@ -4,7 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack --mode=development --watch",
+    "build": "webpack --mode=production"
   },
   "keywords": [],
   "author": "",
@@ -12,7 +14,12 @@
   "dependencies": {
     "express": "^4.17.1",
     "hapi": "^18.1.0",
+    "jquery": "^3.6.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.6.8"
+  },
+  "devDependencies": {
+    "webpack": "^5.51.1",
+    "webpack-cli": "^4.8.0"
   }
 }

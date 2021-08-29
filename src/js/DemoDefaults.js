@@ -121,3 +121,5 @@ const demoDefaults = {
         "rankedScore": false,
     }
 }
+
+module.exports = demoDefaults;

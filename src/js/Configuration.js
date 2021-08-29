@@ -5,6 +5,10 @@
 * not going to be commenting on that either. I'm just going to use it. I guess.
 */
 
+const {
+    twitch,
+} = require('./Helper.js');
+const demoDefaults = require('./DemoDefaults.js');
 
 
 /**
@@ -98,3 +102,5 @@ class Configuration {
     }
 
 }
+
+module.exports = Configuration;

@@ -1,3 +1,12 @@
+const {
+    $,
+    twitch,
+    hookOnGlobalConfigChanged,
+    hookOnAuthorized,
+    hookOnContextChanged
+} = require('./Helper.js');
+const ScoreSaber = require('./ScoreSaber.js');
+const Configuration = require('./Configuration.js');
 
 
 function buildGlobalRank(value) {
