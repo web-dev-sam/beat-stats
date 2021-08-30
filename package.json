@@ -1,6 +1,6 @@
 {
   "name": "beat-stats",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Add a twitch panel to show your current ranking, pp, accuracy, and other data from scoresaber.com to your channel page.",
   "main": "app.js",
   "scripts": {

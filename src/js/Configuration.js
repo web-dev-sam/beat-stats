@@ -20,7 +20,7 @@ class Configuration {
     // The structure of the configuration object.
     static STRUCTURE = {
         "broadcaster": {
-            "version": "2",
+            "version": "3",
             "data": {
                 "scoresaberId": "",
                 "bgPic": "",
@@ -47,13 +47,13 @@ class Configuration {
      * @public
      * @static
      */
-    static set(segment, data, version=Math.random()) {
-        version = version || Configuration.__getVersion(segment)
+    static set(segment, data) {
         twitch.ext.configuration.set(
             segment,
-            version, 
+            Configuration.__getVersion(segment), 
             JSON.stringify(data)
         );
+        console.log("Setting Configuration: ", Configuration.__getVersion(segment), data);
     }
 
 
@@ -66,7 +66,7 @@ class Configuration {
      */
     static get(segment) {
         const data = twitch.ext.configuration[segment];
-        //console.log(data);
+        console.log("Getting Configuration: ", data);
         if (data) {
             return JSON.parse(data.content);
         }
