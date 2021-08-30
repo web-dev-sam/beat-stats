@@ -53,7 +53,7 @@ class Configuration {
             Configuration.__getVersion(segment), 
             JSON.stringify(data)
         );
-        console.log("Setting Configuration: ", Configuration.__getVersion(segment), data);
+        //console.log("Setting Configuration: ", Configuration.__getVersion(segment), data);
     }
 
 
@@ -66,7 +66,7 @@ class Configuration {
      */
     static get(segment) {
         const data = twitch.ext.configuration[segment];
-        console.log("Getting Configuration: ", data);
+        //console.log("Getting Configuration: ", data);
         if (data) {
             return JSON.parse(data.content);
         }

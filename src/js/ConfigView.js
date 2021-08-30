@@ -72,7 +72,7 @@ class ConfigView {
             }
 
             if (me.hasUserChanged()) {
-                console.log("Scoresaber Id changed!");
+                //console.log("Scoresaber Id changed!");
                 Configuration.setDefaults("broadcaster", me.formData.scoresaberId);
                 me.showFormData(me.formData.scoresaberId);
                 me.saving = false;
@@ -184,7 +184,7 @@ class ConfigView {
      */
     showFormData(scoreSaberId) {
         const data = demoDefaults[scoreSaberId]? demoDefaults[scoreSaberId] : Configuration.get("broadcaster");
-        console.log(demoDefaults[scoreSaberId], data);
+        //console.log(demoDefaults[scoreSaberId], data);
         if (!data)
             return;
 
@@ -213,6 +213,4 @@ hookOnGlobalConfigChanged(_ => {
 
     // Uncomment this to empty the config (like for new users)
     //Configuration.empty();
-
-    console.log()
 })
