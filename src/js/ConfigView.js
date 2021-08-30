@@ -193,6 +193,10 @@ class ConfigView {
             const func = $(this).attr("bsaction");
             $(this)[func](data[key]);
         });
+
+        if (demoDefaults[scoreSaberId]) {
+            $("#suggestion-info").removeClass("hidden");
+        }
         
         if (data.scoresaberId && !scoreSaberId) {
             $(".container__item").removeClass("hidden");
