@@ -31,6 +31,7 @@ body {
 
 .fairly-big {
     font-size: 34px;
+    white-space: nowrap;
 }
 
 .small {

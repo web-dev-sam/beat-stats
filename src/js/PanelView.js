@@ -1,9 +1,9 @@
 const {
     $,
-    twitch,
     hookOnGlobalConfigChanged,
     hookOnAuthorized,
-    hookOnContextChanged
+    hookOnContextChanged,
+    beautifyBigNumber,
 } = require('./Helper.js');
 const ScoreSaber = require('./ScoreSaber.js');
 const Configuration = require('./Configuration.js');
@@ -92,6 +92,7 @@ function buildTopRankedPlay(value) {
 
 
 function buildTotalScore(value) {
+    value = beautifyBigNumber(value);
     return `
         <div>
             <span class="small">Total Score</span><br>
@@ -102,6 +103,7 @@ function buildTotalScore(value) {
 
 
 function buildRankedScore(value) {
+    value = beautifyBigNumber(value);
     return `
         <div>
             <span class="small">Ranked Score</span><br>
@@ -207,18 +209,18 @@ hookOnGlobalConfigChanged(async () => {
 
     const scores = await scoresaber.getTopPlays();
     const topPlay = scores.scores[0].pp;
-    
+
     buildStats(data, {
-        globalRank:     playerData.playerInfo.rank,
-        localRank:      playerData.playerInfo.countryRank,
-        pp:             playerData.playerInfo.pp,
-        topPercentage:  Math.ceil(playerData.playerInfo.rank * 10000 / 174000) / 100,
-        topRankedPlay:  Math.ceil(topPlay * 100) / 100,
-        avgAcc:         Math.round(playerData.scoreStats.averageRankedAccuracy * 100) / 100,
-        totalPlays:     playerData.scoreStats.totalPlayCount,
-        rankedPlays:    playerData.scoreStats.rankedPlayCount,
-        totalScore:     playerData.scoreStats.totalScore,
-        rankedScore:    playerData.scoreStats.totalRankedScore
+        globalRank: playerData.playerInfo.rank,
+        localRank: playerData.playerInfo.countryRank,
+        pp: playerData.playerInfo.pp,
+        topPercentage: Math.ceil(playerData.playerInfo.rank * 10000 / 174000) / 100,
+        topRankedPlay: Math.ceil(topPlay * 100) / 100,
+        avgAcc: Math.round(playerData.scoreStats.averageRankedAccuracy * 100) / 100,
+        totalPlays: playerData.scoreStats.totalPlayCount,
+        rankedPlays: playerData.scoreStats.rankedPlayCount,
+        totalScore: playerData.scoreStats.totalScore,
+        rankedScore: playerData.scoreStats.totalRankedScore
     });
 
     $("#name").text(playerData.playerInfo.playerName);
