@@ -35,7 +35,7 @@ function buildPipi(value) {
 function buildAvgAcc(value) {
     return `
         <div>
-            <span class="small">Avg Acci</span><br>
+            <span class="small">Avg Acc</span><br>
             <span class="fairly-big" id="avgAcc">${value}</span>%
         </div>
     `;
@@ -124,11 +124,21 @@ function buildAp(value) {
 }
 
 
+function buildAvgAccSaberAcc(value) {
+    return `
+        <div>
+            <span class="small">Avg AccSaber Acc</span><br>
+            <span class="fairly-big" id="avgAccSaberAcc">${value}</span>%
+        </div>
+    `;
+}
+
+
 function buildStats(values, settings) {
     const statsLabels = [
         "globalRank", "localRank", "pp", "topPercentage",
         "topRankedPlay", "avgAcc", "totalPlays", "rankedPlays",
-        "totalScore", "rankedScore", "ap", "topApPlay",
+        "totalScore", "rankedScore", "ap", "topApPlay", "avgAccSaberAcc",
     ];
     const statsLabelProperties = {
         globalRank: {
@@ -178,6 +188,10 @@ function buildStats(values, settings) {
         topApPlay: {
             fn: buildTopAp,
             visibility: values.topApPlay,
+        },
+        avgAccSaberAcc: {
+            fn: buildAvgAccSaberAcc,
+            visibility: values.avgAccSaberAcc,
         },
     };
     let length = 0;
@@ -245,6 +259,7 @@ hookOnGlobalConfigChanged(async () => {
         rankedScore: playerData.scoreStats.totalRankedScore,
         ap: Math.ceil(accPlayerData.ap * 100) / 100,
         topApPlay: Math.ceil((accPlayerTopPlays[0].ap || 0) * 100) / 100,
+        avgAccSaberAcc: Math.round(accPlayerData.averageAcc * 10000) / 100,
     });
 
     $("#name").text(playerData.playerInfo.playerName);

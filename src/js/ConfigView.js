@@ -120,7 +120,7 @@ class ConfigView {
         // Check accSaber id
         const checkedSettings = $(`.statistics input:checked`);
         const checkedSettingsIds = checkedSettings.map((i, el) => $(el).attr("bsconfig")).toArray();
-        const accSaberSettings = ["ap", "topApPlay"];
+        const accSaberSettings = ["ap", "topApPlay", "avgAccSaberAcc"];
         if (checkedSettingsIds.length > 0 && accSaberSettings.some(setting => checkedSettingsIds.includes(setting))) {
             const accSaberValid = await this.checkAccSaberId(this.formData);
             if (accSaberValid.error) {
