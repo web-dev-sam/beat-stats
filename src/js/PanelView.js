@@ -1,12 +1,3 @@
-const {
-    $,
-    hookOnGlobalConfigChanged,
-    hookOnAuthorized,
-    hookOnContextChanged,
-    beautifyBigNumber,
-} = require('./Helper.js');
-const ScoreSaber = require('./ScoreSaber.js');
-const Configuration = require('./Configuration.js');
 
 
 function buildGlobalRank(value) {
@@ -44,7 +35,7 @@ function buildPipi(value) {
 function buildAvgAcc(value) {
     return `
         <div>
-            <span class="small">Avg Acc</span><br>
+            <span class="small">Avg Acci</span><br>
             <span class="fairly-big" id="avgAcc">${value}</span>%
         </div>
     `;

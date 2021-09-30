@@ -16,16 +16,6 @@
  * is useful to anyone and not a waste of my time. I should probably stop writing this and continue and not procrastinate.
  */
 
-const {
-    $,
-    hookOnGlobalConfigChanged,
-    hookOnAuthorized,
-    hookOnContextChanged
-} = require('./Helper.js');
-const ScoreSaber = require('./ScoreSaber.js');
-const Configuration = require('./Configuration.js');
-const demoDefaults = require('./DemoDefaults.js');
-
 class ConfigView {
 
     saving = false;

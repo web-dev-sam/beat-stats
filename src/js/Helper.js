@@ -1,4 +1,3 @@
-window.$ = require('jquery');
 
 const twitch = window.Twitch;
 
@@ -45,13 +44,3 @@ function hookOnContextChanged(callback = null) {
     })
 }
 // #endregion
-
-
-module.exports = {
-    $,
-    twitch,
-    beautifyBigNumber,
-    hookOnGlobalConfigChanged,
-    hookOnAuthorized,
-    hookOnContextChanged,
-}

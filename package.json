@@ -3,10 +3,7 @@
   "version": "1.0.0",
   "description": "Add a twitch panel to show your current ranking, pp, accuracy, and other data from scoresaber.com to your channel page.",
   "main": "app.js",
-  "scripts": {
-    "watch": "webpack --mode=development --watch",
-    "build": "webpack --mode=production"
-  },
+  "scripts": {},
   "keywords": [],
   "author": "MindLabor and rnr321_real",
   "license": "ISC",

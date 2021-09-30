@@ -5,12 +5,6 @@
 * not going to be commenting on that either. I'm just going to use it. I guess.
 */
 
-const {
-    twitch,
-} = require('./Helper.js');
-const demoDefaults = require('./DemoDefaults.js');
-
-
 /**
 * A bunch of functions to help dealing with the configuration service.
 */
@@ -113,5 +107,3 @@ class Configuration {
     }
 
 }
-
-module.exports = Configuration;

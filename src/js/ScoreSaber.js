@@ -78,5 +78,3 @@ class ScoreSaber {
 
 
 }
-
-module.exports = ScoreSaber;
