@@ -117,8 +117,20 @@ class ConfigView {
             return false;
         }
 
+        // Check accSaber id
+        const checkedSettings = $(`.statistics input:checked`);
+        const checkedSettingsIds = checkedSettings.map((i, el) => $(el).attr("bsconfig")).toArray();
+        const accSaberSettings = ["ap", "topApPlay"];
+        if (checkedSettingsIds.length > 0 && accSaberSettings.some(setting => checkedSettingsIds.includes(setting))) {
+            const accSaberValid = await this.checkAccSaberId(this.formData);
+            if (accSaberValid.error) {
+                $(`[bsconfig="scoresaberId"] + label.error`).text(accSaberValid.error);
+                return false;
+            }
+        }
+
         // Check if there are maximum of 8 data panels
-        if ($(`.statistics input:checked`).length > 8) {
+        if (checkedSettings.length > 8) {
             $(`.stats-label.error`).text("You can only select up to 8 statistic panels!");
             return false;
         }
@@ -132,13 +144,38 @@ class ConfigView {
      * @param {object} data - The form data
      * @async
      */
-    checkScoreSaberId(data) {
+     checkScoreSaberId(data) {
         const me = this;
         return new Promise((resolve, reject) => {
             const scoresaber = new ScoreSaber(data.scoresaberId);
             scoresaber
                 .getPlayerData()
                 .then(playerData => {
+                    me.playerData = playerData;
+                    resolve({});
+                })
+                .catch(error => resolve({ error }))
+                .finally(_ => resolve({}));
+        });
+    }
+
+
+    /**
+     * Check if the accSaberId is valid
+     * @param {object} data - The form data
+     * @async
+     */
+     checkAccSaberId(data) {
+        const me = this;
+        return new Promise((resolve, reject) => {
+            const scoresaber = new AccSaber(data.scoresaberId);
+            scoresaber
+                .getPlayerData()
+                .then(playerData => {
+                    if (playerData.errorCode != null) {
+                        resolve({ error: playerData.message });
+                        return;
+                    }
                     me.playerData = playerData;
                     resolve({});
                 })

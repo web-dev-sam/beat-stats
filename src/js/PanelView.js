@@ -104,11 +104,31 @@ function buildRankedScore(value) {
 }
 
 
+function buildTopAp(value) {
+    return `
+        <div>
+            <span class="small">Top AP Play</span><br>
+            <span class="fairly-big" id="topAp">${value}</span>
+        </div>
+    `;
+}
+
+
+function buildAp(value) {
+    return `
+        <div>
+            <span class="small">AP</span><br>
+            <span class="fairly-big" id="ap">${value}</span>
+        </div>
+    `;
+}
+
+
 function buildStats(values, settings) {
     const statsLabels = [
         "globalRank", "localRank", "pp", "topPercentage",
         "topRankedPlay", "avgAcc", "totalPlays", "rankedPlays",
-        "totalScore", "rankedScore"
+        "totalScore", "rankedScore", "ap", "topApPlay",
     ];
     const statsLabelProperties = {
         globalRank: {
@@ -150,7 +170,15 @@ function buildStats(values, settings) {
         rankedScore: {
             fn: buildRankedScore,
             visibility: values.rankedScore,
-        }
+        },
+        ap: {
+            fn: buildAp,
+            visibility: values.ap,
+        },
+        topApPlay: {
+            fn: buildTopAp,
+            visibility: values.topApPlay,
+        },
     };
     let length = 0;
     for (const { visibility } of Object.values(statsLabelProperties)) {
@@ -195,7 +223,10 @@ hookOnGlobalConfigChanged(async () => {
 
     // Get data and display everything
     const scoresaber = new ScoreSaber(data.scoresaberId);
+    const accsaber = new AccSaber(data.scoresaberId);
     const playerData = await scoresaber.getPlayerData();
+    const accPlayerData = await accsaber.getPlayerData();
+    const accPlayerTopPlays = await accsaber.getTopPlays();
     //console.log(playerData)
 
     const scores = await scoresaber.getTopPlays();
@@ -211,7 +242,9 @@ hookOnGlobalConfigChanged(async () => {
         totalPlays: playerData.scoreStats.totalPlayCount,
         rankedPlays: playerData.scoreStats.rankedPlayCount,
         totalScore: playerData.scoreStats.totalScore,
-        rankedScore: playerData.scoreStats.totalRankedScore
+        rankedScore: playerData.scoreStats.totalRankedScore,
+        ap: Math.ceil(accPlayerData.ap * 100) / 100,
+        topApPlay: Math.ceil((accPlayerTopPlays[0].ap || 0) * 100) / 100,
     });
 
     $("#name").text(playerData.playerInfo.playerName);
