@@ -19,4 +19,15 @@
 * Run `npm install`
 * Run `http-server`
 
+
 <br>&nbsp;<br>
+
+<div align="center">
+    <h2>Example</h2>
+</div>
+
+<div align="center">
+    <img src="https://raw.githubusercontent.com/MindLaborDev/beat-stats/main/demo/demo.png?raw=true" width="400" style="border-radius: 15px;">
+</div>
+<br>&nbsp;<br>
+
