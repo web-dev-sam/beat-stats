@@ -18,13 +18,5 @@
 
 * Run `npm install`
 * Run `http-server`
-* Run `npm run watch`
-
-
-<div align="center">
-    <h2>Production</h2>
-</div>
-
-* Run `npm run build`
 
 <br>&nbsp;<br>
