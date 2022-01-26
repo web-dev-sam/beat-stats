@@ -38,6 +38,7 @@ a:hover {
     transition: all 200ms ease-in;
     cursor: pointer;
 }
+
 .btn--primary {
     background: #7f8ff4;
     color: #fff;
@@ -168,4 +169,8 @@ label.error {
 
 .hidden {
     display: none;
+}
+
+.hover-hint {
+    cursor: help;
 }
