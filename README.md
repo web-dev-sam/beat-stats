@@ -12,18 +12,9 @@
 </div>
 <br>&nbsp;<br>
 
-<div align="center">
-    <h2>Development</h2>
-</div>
-
-* Run `npm install`
-* Run `http-server`
-
-
-<br>&nbsp;<br>
 
 <div align="center">
-    <h2>Example</h2>
+    <h2>Demo Image</h2>
 </div>
 
 <div align="center">
