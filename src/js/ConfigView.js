@@ -29,7 +29,7 @@ class ConfigView {
         const me = this;
 
         // Save button
-        $(".btn-save").on("click", () => me.save());
+        document.querySelector(".btn-save").addEventListener("click", () => me.save());
     }
 
 
@@ -39,7 +39,8 @@ class ConfigView {
      */
     save() {
         const me = this;
-        $(`label.error`).text("")
+        const btnSave = document.querySelector(".btn-save");
+        document.querySelector(`label.error`).innerText = "";
         return new Promise(async (resolve, reject) => {
 
             // Don't save again if we're already saving
@@ -50,13 +51,13 @@ class ConfigView {
 
             // We are now saving
             me.saving = true;
-            $(".btn-save").html(`Saving...`);
+            btnSave.innerText = `Saving...`;
 
             // Check for valid input
             const valid = await me.checkForValidInput();
             if (!valid) {
                 me.saving = false;
-                $(".btn-save").html("Save");
+                btnSave.innerText = `Save`;
                 resolve();
                 return;
             }
@@ -66,7 +67,7 @@ class ConfigView {
                 Configuration.setDefaults("broadcaster", me.formData.scoresaberId);
                 me.showFormData(me.formData.scoresaberId);
                 me.saving = false;
-                $(".btn-save").html("Save");
+                btnSave.innerText = `Save`;
                 resolve();
                 return;
             }
@@ -75,10 +76,10 @@ class ConfigView {
             Configuration.set("broadcaster", me.formData);
 
             // We are no longer saving
-            $(".btn-save").html("Saved");
+            btnSave.innerText = `Saved`;
             setTimeout(() => {
                 me.saving = false;
-                $(".btn-save").html("Save");
+                btnSave.innerText = `Save`;
             }, 1500);
             resolve();
         });
@@ -113,25 +114,25 @@ class ConfigView {
         // Check scoresaber id
         const scoreSaberValid = await this.checkScoreSaberId(this.formData);
         if (scoreSaberValid.error) {
-            $(`[bsconfig="scoresaberId"] + label.error`).text(scoreSaberValid.error);
+            document.querySelector(`[bsconfig="scoresaberId"] + label.error`).innerText = scoreSaberValid.error;
             return false;
         }
 
         // Check accSaber id
-        const checkedSettings = $(`.statistics input:checked`);
-        const checkedSettingsIds = checkedSettings.map((i, el) => $(el).attr("bsconfig")).toArray();
+        const checkedSettings = Array.from(document.querySelectorAll(`.statistics input:checked`));
+        const checkedSettingsIds = checkedSettings.map(el => el.getAttribute("bsconfig"));
         const accSaberSettings = ["ap", "topApPlay", "avgAccSaberAcc"];
         if (checkedSettingsIds.length > 0 && accSaberSettings.some(setting => checkedSettingsIds.includes(setting))) {
             const accSaberValid = await this.checkAccSaberId(this.formData);
             if (accSaberValid.error) {
-                $(`[bsconfig="scoresaberId"] + label.error`).text(accSaberValid.error);
+                document.querySelector(`[bsconfig="scoresaberId"] + label.error`).innerText = accSaberValid.error;
                 return false;
             }
         }
 
         // Check if there are maximum of 8 data panels
         if (checkedSettings.length > 8) {
-            $(`.stats-label.error`).text("You can only select up to 8 statistic panels!");
+            document.querySelector(`.stats-label.error`).innerText = "You can only select up to 8 statistic panels!";
             return false;
         }
         
@@ -190,10 +191,10 @@ class ConfigView {
      */
     getFormData() {
         const data = {};
-        $("[bsconfig]").each(function () {
-            const key = $(this).attr("bsconfig");
-            const func = $(this).attr("bsaction");
-            const value = $(this)[func]();
+        document.querySelectorAll("[bsconfig]").forEach(function (elem) {
+            const key = elem.getAttribute("bsconfig");
+            const func = elem.getAttribute("bsaction");
+            const value = actionHandler[func](elem);
             data[key] = value;
 
             if (key === "scoresaberId" && data[key]) {
@@ -215,18 +216,18 @@ class ConfigView {
         if (!data)
             return;
 
-        $("[bsconfig]").each(function () {
-            const key = $(this).attr("bsconfig");
-            const func = $(this).attr("bsaction");
-            $(this)[func](data[key]);
+        document.querySelectorAll("[bsconfig]").forEach(function (elem) {
+            const key = elem.getAttribute("bsconfig");
+            const func = elem.getAttribute("bsaction");
+            actionHandler[func](elem, data[key]);
         });
 
         if (demoDefaults[scoreSaberId]) {
-            $("#suggestion-info").removeClass("hidden");
+            document.querySelector("#suggestion-info").classList.remove("hidden");
         }
         
         if (data.scoresaberId && !scoreSaberId) {
-            $(".container__item").removeClass("hidden");
+            document.querySelectorAll(".container__item").forEach(elem => elem.classList.remove("hidden"));
         }
     }
 

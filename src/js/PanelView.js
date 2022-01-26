@@ -216,12 +216,12 @@ function buildStats(values, settings) {
     }
 
     if (length > 6) {
-        $("#name").hide();
-        $(".player-data").css("margin-top", "18px");
+        document.querySelector("#name").style.display = "none";
+        document.querySelector(".player-data").style.marginTop = "18px";
     }
 
-    $(`.player-data .left-column`).html(left);
-    $(`.player-data .right-column`).html(right);
+    document.querySelector(`.player-data .left-column`).innerHTML = left;
+    document.querySelector(`.player-data .right-column`).innerHTML = right;
 }
 
 
@@ -262,19 +262,35 @@ hookOnGlobalConfigChanged(async () => {
         avgAccSaberAcc: Math.round(accPlayerData.averageAcc * 10000) / 100,
     });
 
-    $("#name").text(playerData.playerInfo.playerName);
-    $("#flags").attr("src", "https://www.countryflags.io/" + playerData.playerInfo.country + "/shiny/16.png")
-    $("#profiePic").css({
-        "background-image": "url(" + (data.bgPic ? data.bgPic : "https://new.scoresaber.com" + playerData.playerInfo.avatar) + ")",
-        "background-size": "cover",
-        "background-repeat": "no-repeat",
-        "background-position": "50% 50%",
-    });
-    $(".sexy-blur").css("backdrop-filter", `blur(${data.blur}px)`)
+    document.querySelector("#name").innerText = playerData.playerInfo.playerName;
+    document.querySelector("#flags").setAttribute("src", "https://countryflagsapi.com/png/" + playerData.playerInfo.country);
+    document.querySelector(".sexy-blur").style.backdropFilter = `blur(${data.blur}px)`;
+    const profilePic = document.querySelector("#profiePic");
+    profilePic.style.backgroundImage = "url(" + (data.bgPic ? data.bgPic : "https://new.scoresaber.com" + playerData.playerInfo.avatar) + ")";
+    profilePic.style.backgroundSize = "cover";
+    profilePic.style.backgroundRepeat = "no-repeat";
+    profilePic.style.backgroundPosition = "50% 50%";
 
 })
 
 
-$(document).ready(() => {
-    $(document.body).css("visibility", "visible");
+/**
+ * Calles when page is loaded
+ */
+function ready(fn) {
+    if (document.readyState != 'loading') {
+        fn();
+    } else if (document.addEventListener) {
+        document.addEventListener('DOMContentLoaded', fn);
+    } else {
+        document.attachEvent('onreadystatechange', function () {
+            if (document.readyState != 'loading')
+                fn();
+        });
+    }
+}
+
+
+ready(() => {
+    document.body.style.visibility = "visible";
 });

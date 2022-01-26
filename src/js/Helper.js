@@ -1,14 +1,20 @@
 
 const twitch = window.Twitch;
 
-$.fn.extend({
-    chkd: function (value) {
-        if (value !== undefined)
-            return this.prop('checked', value);
-        return this.is(':checked');
+const actionHandler = {
+    chkd: function (elem, value) {
+        if (value == null) {
+            return elem.checked;
+        }
+        elem.checked = value;
+    },
+    val: function (elem, value) {
+        if (value == null) {
+            return elem.value;
+        }
+        elem.value = value;
     }
-});
-
+};
 
 /**
  * Beautifies a big number

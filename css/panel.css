@@ -73,3 +73,7 @@ body {
     font-weight: 300;
     padding-bottom: 8px;
 }
+
+#flags {
+    width: 1.1rem;
+}
