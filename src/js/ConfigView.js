@@ -29,7 +29,7 @@ class ConfigView {
         const me = this;
 
         // Save button
-        document.querySelector(".btn-save").addEventListener("click", () => me.save());
+        document.querySelectorAll(".btn-save").forEach(e => e.addEventListener("click", () => me.save()));
     }
 
 
@@ -39,9 +39,9 @@ class ConfigView {
      */
     save() {
         const me = this;
-        const btnSave = document.querySelector(".btn-save");
+        const btnSave = document.querySelectorAll(".btn-save");
         document.querySelector(`label.error`).innerText = "";
-        return new Promise(async (resolve, reject) => {
+        return new Promise(async resolve => {
 
             // Don't save again if we're already saving
             if (me.saving) {
@@ -51,13 +51,13 @@ class ConfigView {
 
             // We are now saving
             me.saving = true;
-            btnSave.innerText = `Saving...`;
+            btnSave.forEach(e => e.innerText = `Saving...`);
 
             // Check for valid input
             const valid = await me.checkForValidInput();
             if (!valid) {
                 me.saving = false;
-                btnSave.innerText = `Save`;
+                btnSave.forEach(e => e.innerText = `Save`);
                 resolve();
                 return;
             }
@@ -67,7 +67,7 @@ class ConfigView {
                 Configuration.setDefaults("broadcaster", me.formData.scoresaberId);
                 me.showFormData(me.formData.scoresaberId);
                 me.saving = false;
-                btnSave.innerText = `Save`;
+                btnSave.forEach(e => e.innerText = `Save`);
                 resolve();
                 return;
             }
@@ -76,10 +76,10 @@ class ConfigView {
             Configuration.set("broadcaster", me.formData);
 
             // We are no longer saving
-            btnSave.innerText = `Saved`;
+            btnSave.forEach(e => e.innerText = `Saved`);
             setTimeout(() => {
                 me.saving = false;
-                btnSave.innerText = `Save`;
+                btnSave.forEach(e => e.innerText = `Save`);
             }, 1500);
             resolve();
         });
