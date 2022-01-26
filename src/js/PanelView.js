@@ -15,7 +15,7 @@ function buildLocalRank(value) {
     return `
         <div>
             <span class="small">Local Rank</span><br>
-            <img id="flags">
+            <img id="flags" title="">
             #<span class="fairly-big" id="countryRank">${value}</span>
         </div>
     `;
@@ -263,7 +263,10 @@ hookOnGlobalConfigChanged(async () => {
     });
 
     document.querySelector("#name").innerText = playerData.playerInfo.playerName;
-    document.querySelector("#flags").setAttribute("src", "https://countryflagsapi.com/png/" + playerData.playerInfo.country);
+    const regionNames = new Intl.DisplayNames(['en'], {type: 'region'});
+    const flags = document.querySelector("#flags");
+    flags.setAttribute("src", "https://countryflagsapi.com/png/" + playerData.playerInfo.country);
+    flags.setAttribute("title", regionNames.of(playerData.playerInfo.country.toUpperCase()));
     document.querySelector(".sexy-blur").style.backdropFilter = `blur(${data.blur}px)`;
     const profilePic = document.querySelector("#profiePic");
     profilePic.style.backgroundImage = "url(" + (data.bgPic ? data.bgPic : "https://new.scoresaber.com" + playerData.playerInfo.avatar) + ")";
