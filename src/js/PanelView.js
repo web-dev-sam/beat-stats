@@ -250,7 +250,7 @@ hookOnGlobalConfigChanged(async () => {
         globalRank: playerData.playerInfo.rank,
         localRank: playerData.playerInfo.countryRank,
         pp: playerData.playerInfo.pp,
-        topPercentage: Math.ceil(playerData.playerInfo.rank * 10000 / 174000) / 100,
+        topPercentage: Math.ceil(playerData.playerInfo.rank * 10000 / 206000) / 100, // about 206000 registered players on the scoresaber.com leaderboard on 26.01.2022
         topRankedPlay: Math.ceil(topPlay * 100) / 100,
         avgAcc: Math.round(playerData.scoreStats.averageRankedAccuracy * 100) / 100,
         totalPlays: playerData.scoreStats.totalPlayCount,
