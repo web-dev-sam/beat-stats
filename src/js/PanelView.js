@@ -15,7 +15,7 @@ function buildLocalRank(value) {
     return `
         <div>
             <span class="small">Local Rank</span><br>
-            <img id="flags" title="">
+            <img id="flags" class="hover-hint">
             #<span class="fairly-big" id="countryRank">${value}</span>
         </div>
     `;
