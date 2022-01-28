@@ -14,10 +14,9 @@ class Configuration {
     // The structure of the configuration object.
     static STRUCTURE = {
         "broadcaster": {
-            "version": "5",
+            "version": "6",
             "data": {
                 "scoresaberId": "",
-                "bgPic": "",
                 "globalRank": true,
                 "localRank": true,
                 "pp": true,

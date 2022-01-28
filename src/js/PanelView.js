@@ -270,10 +270,12 @@ hookOnGlobalConfigChanged(async () => {
     flags.setAttribute("title", regionNames.of(playerData.playerInfo.country.toUpperCase()));
     document.querySelector(".sexy-blur").style.backdropFilter = `blur(${data.blur}px)`;
     const profilePic = document.querySelector("#profiePic");
-    profilePic.style.backgroundImage = "url(" + (data.bgPic ? data.bgPic : "https://new.scoresaber.com" + playerData.playerInfo.avatar) + ")";
+    profilePic.style.backgroundImage = `url(https://new.scoresaber.com${playerData.playerInfo.avatar})`;
     profilePic.style.backgroundSize = "cover";
     profilePic.style.backgroundRepeat = "no-repeat";
     profilePic.style.backgroundPosition = "50% 50%";
+    const name = document.querySelector("#name");
+    name.href = `https://scoresaber.com/u/${data.scoresaberId}`;
 
 })
 

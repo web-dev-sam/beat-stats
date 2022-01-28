@@ -67,11 +67,20 @@ body {
 }
 
 #name {
-    margin: 10px;
+    display: block;
+    margin: 10px 10px 15px 10px;
     padding-left: 35px;
     font-size: 30px;
     font-weight: 300;
     padding-bottom: 8px;
+    width: max-content;
+    height: 30px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+#name:hover {
+    transform: scale(1.05);
 }
 
 #flags {
@@ -80,4 +89,14 @@ body {
 
 .hover-hint {
     cursor: help;
+}
+
+
+a,
+a:hover,
+a:focus,
+a:active,
+a:visited {
+    color: white;
+    text-decoration: none;
 }
