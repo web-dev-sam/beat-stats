@@ -17,7 +17,7 @@ class ScoreSaber {
         return new Promise((resolve, reject) => {
 
             // Get data from scoresaber
-            fetch(`https://new.scoresaber.com/api/player/${this.scoresaberId}/full`).then(async response => {
+            fetch(`https://scoresaber.com/api/player/${this.scoresaberId}/full`).then(async response => {
                 if (!response.ok) {
                     switch (response.status) {
                         case 404: reject("User doesn't exist!");
