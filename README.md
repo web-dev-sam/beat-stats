@@ -10,6 +10,12 @@
         <p>Add a panel to show your current ranking, pp, accuracy, and other data from scoresaber.com to your channel page. Also, you can change the theme of your panel to fit your likings.</p>
     </p>
 </div>
+
+
+<div align="center">
+    <h2>Installation</h2>
+</div>
+Go to the [latest realease](https://github.com/MindLaborDev/beat-stats/releases/latest) and download it from there. Alternatively search for "beat-stats" directly in [twitch extensions](https://dashboard.twitch.tv/extensions/search?q=beat-stats).
 <br>&nbsp;<br>
 
 
@@ -21,4 +27,3 @@
     <img src="https://raw.githubusercontent.com/MindLaborDev/beat-stats/main/demo/demo.png?raw=true" width="400" style="border-radius: 15px;">
 </div>
 <br>&nbsp;<br>
-
