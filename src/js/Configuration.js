@@ -14,19 +14,19 @@ class Configuration {
     // The structure of the configuration object.
     static STRUCTURE = {
         "broadcaster": {
-            "version": "6",
+            "version": "1.3",
             "data": {
                 "scoresaberId": "",
                 "globalRank": true,
                 "localRank": true,
                 "pp": true,
-                "topPercentage": false,
-                "topRankedPlay": false,
+                "topPercentage": true,
+                "topRankedPlay": true,
                 "avgAcc": true,
-                "totalPlays": true,
-                "rankedPlays": true,
-                "totalScore": true,
-                "rankedScore": true,
+                "totalPlays": false,
+                "rankedPlays": false,
+                "totalScore": false,
+                "rankedScore": false,
                 "ap": false,
                 "topApPlay": false,
                 "avgAccSaberAcc": false,
@@ -49,7 +49,7 @@ class Configuration {
             Configuration.__getVersion(segment), 
             JSON.stringify(data)
         );
-        //console.log("Setting Configuration: ", Configuration.__getVersion(segment), data);
+        console.log("Setting Configuration: ", Configuration.__getVersion(segment), data);
     }
 
 
@@ -62,7 +62,7 @@ class Configuration {
      */
     static get(segment) {
         const data = twitch.ext.configuration[segment];
-        //console.log("Getting Configuration: ", data);
+        console.log("Getting Configuration: ", data);
         if (data) {
             return JSON.parse(data.content);
         }
