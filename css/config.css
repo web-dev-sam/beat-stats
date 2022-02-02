@@ -11,7 +11,7 @@ a {
     color: inherit;
 }
 a:hover {
-    color: #7f8ff4;
+    color: #FF5F6D;
 }
 
 .container {
@@ -40,7 +40,7 @@ a:hover {
 }
 
 .btn--primary {
-    background: #7f8ff4;
+    background: #FF5F6D;
     color: #fff;
     box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
     border-radius: 2px;
@@ -50,11 +50,11 @@ a:hover {
 }
 
 .btn--primary:hover {
-    background: #6c7ff2;
+    background: #D9555E;
 }
 
 .btn--primary:active {
-    background: #7f8ff4;
+    background: #FF5F6D;
     box-shadow: inset 0 0 10px 2px rgba(0, 0, 0, 0.2);
 }
 
@@ -106,6 +106,7 @@ input[type="checkbox"] + label {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
+    user-select: none;
 }
 
 input[type="checkbox"] + label:last-child {
