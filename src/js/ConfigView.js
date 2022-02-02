@@ -38,21 +38,16 @@ class ConfigView {
      * @async
      */
     save() {
-        console.log("yes 0");
         const me = this;
         const btnSave = document.querySelectorAll(".btn-save");
         document.querySelector(`label.error`).innerText = "";
-        debugger;
         return new Promise(async resolve => {
-            console.log("yes 1");
-            debugger;
 
             // Don't save again if we're already saving
             if (me.saving) {
                 resolve();
                 return;
             }
-            console.log("yes 2");
 
             // We are now saving
             me.saving = true;
@@ -66,7 +61,6 @@ class ConfigView {
                 resolve();
                 return;
             }
-            console.log("yes 3");
 
             if (me.hasUserChanged()) {
                 console.log("Scoresaber Id changed!");
@@ -77,7 +71,6 @@ class ConfigView {
                 resolve();
                 return;
             }
-            console.log("yes 4");
 
             // Save the config
             Configuration.set("broadcaster", me.formData);
