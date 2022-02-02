@@ -63,7 +63,7 @@ function buildRankedPlays(value) {
 
 
 function buildTopPercentage(value) {
-    const notice = "Based on all registered players on scoresaber.com (as of February 2022)";
+    const notice = "Based on all registered players at scoresaber.com (as of February 2022)";
     return `
         <div class="hover-hint" title="${notice}">
             <span class="small">Top Percentage</span><br>
