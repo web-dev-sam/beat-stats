@@ -16,7 +16,7 @@
     <h2>Installation</h2>
 </div>
 
-Go to the [latest release](https://github.com/MindLaborDev/beat-stats/releases/latest) and download it from there. Alternatively search for "beat-stats" directly in [twitch extensions](https://dashboard.twitch.tv/extensions/search?q=beat-stats).
+Go to the [extension on twitch](https://dashboard.twitch.tv/extensions/61o5horkcyf4v7hvu181y3dj7s637v) and install it from there.
 
 <br>&nbsp;<br>
 
