@@ -3,14 +3,14 @@
 <br>&nbsp;<br>
 <div align="center">
     <a href="">
-        <img src="https://github.com/MindLaborDev/beat-stats/blob/main/assets/beatstats.png?raw=true" width="512" style="border-radius: 15px;">
+        <img src="https://github.com/MindLaborDev/beat-stats/blob/main/demo/discovery.png?raw=true" width="256" style="border-radius: 15px;">
     </a>
-    <h2>Beat Stats</h2>
     <p align="center">
         <p>Add a panel to show your current ranking, pp, accuracy, and other data from scoresaber.com to your channel page. Also, you can change the theme of your panel to fit your likings.</p>
     </p>
 </div>
 
+<br>&nbsp;<br>
 
 <div align="center">
     <h2>Installation</h2>
