@@ -16,7 +16,9 @@
     <h2>Installation</h2>
 </div>
 
-Go to the [extension on twitch](https://dashboard.twitch.tv/extensions/61o5horkcyf4v7hvu181y3dj7s637v) and install it from there.
+* Go to the [Twitch Extension](https://dashboard.twitch.tv/extensions/61o5horkcyf4v7hvu181y3dj7s637v), install and add it as a panel.
+* Add your ScoreSaber profile url in the extensions configuration and save.
+* Configure your panel to your likings. (you might need to refresh the page if nothing happens after saving - gonna be fixed in v1.4)
 
 <br>&nbsp;<br>
 
