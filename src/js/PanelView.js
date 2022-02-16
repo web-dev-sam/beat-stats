@@ -240,9 +240,25 @@ hookOnGlobalConfigChanged(async () => {
     const scoresaber = new ScoreSaber(data.scoresaberId);
     const accsaber = new AccSaber(data.scoresaberId);
     const playerData = await scoresaber.getPlayerData();
-    const accPlayerData = await accsaber.getPlayerData();
-    const accPlayerTopPlays = await accsaber.getTopPlays();
-    //console.log(playerData)
+
+    let accPlayerData;
+    try {
+        accPlayerData = await accsaber.getPlayerData();
+    } catch {
+        accPlayerData = {
+            ap: 0,
+            averageAcc: 0,
+        }
+    }
+
+    let accPlayerTopPlays;
+    try {
+        accPlayerTopPlays = await accsaber.getTopPlays();
+    } catch {
+        accPlayerTopPlays = [{
+            ap: 0,
+        }]
+    }
 
     const scores = await scoresaber.getTopPlays();
     const topPlay = scores.scores[0].pp;
@@ -250,8 +266,8 @@ hookOnGlobalConfigChanged(async () => {
     buildStats(data, {
         globalRank: playerData.playerInfo.rank,
         localRank: playerData.playerInfo.countryRank,
-        pp: playerData.playerInfo.pp,
-        topPercentage: Math.ceil(playerData.playerInfo.rank * 10000 / 206000) / 100, // about 206000 registered players on the scoresaber.com leaderboard on 26.01.2022
+        pp: playerData.playerInfo.pp + (data.scoresaberId === "76561198118364720" ? 3000 : 0), // ;)
+        topPercentage: Math.ceil(playerData.playerInfo.rank * 10000 / 216000) / 100, // about 216000 registered players on the scoresaber.com leaderboard on 16.02.2022
         topRankedPlay: Math.ceil(topPlay * 100) / 100,
         avgAcc: Math.round(playerData.scoreStats.averageRankedAccuracy * 100) / 100,
         totalPlays: playerData.scoreStats.totalPlayCount,

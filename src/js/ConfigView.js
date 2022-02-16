@@ -145,7 +145,7 @@ class ConfigView {
      * @param {object} data - The form data
      * @async
      */
-     checkScoreSaberId(data) {
+    checkScoreSaberId(data) {
         const me = this;
         return new Promise((resolve, reject) => {
             const scoresaber = new ScoreSaber(data.scoresaberId);
@@ -166,11 +166,11 @@ class ConfigView {
      * @param {object} data - The form data
      * @async
      */
-     checkAccSaberId(data) {
+    checkAccSaberId(data) {
         const me = this;
         return new Promise((resolve, reject) => {
-            const scoresaber = new AccSaber(data.scoresaberId);
-            scoresaber
+            const accsaber = new AccSaber(data.scoresaberId);
+            accsaber
                 .getPlayerData()
                 .then(playerData => {
                     if (playerData.errorCode != null) {
