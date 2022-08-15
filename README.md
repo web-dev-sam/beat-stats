@@ -2,9 +2,7 @@
 
 <br>&nbsp;<br>
 <div align="center">
-    <a href="">
-        <img src="https://github.com/MindLaborDev/beat-stats/blob/main/demo/discovery.png?raw=true" width="256" style="border-radius: 15px;">
-    </a>
+    <img src="https://github.com/MindLaborDev/beat-stats/blob/main/demo/discovery.png?raw=true" width="256" style="border-radius: 15px;">
     <p align="center">
         <p>Add a panel to show your current ranking, pp, accuracy, and other data from scoresaber.com to your channel page. Also, you can change the theme of your panel to fit your likings.</p>
         <img src="https://shields.io/badge/Installs-500+-blueviolet?style=flat">
