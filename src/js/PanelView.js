@@ -233,65 +233,78 @@ hookOnGlobalConfigChanged(async () => {
 
     const data = Configuration.get("broadcaster");
     //console.log(data);
-    if (!data)
+    if (!data || !data.scoresaberId)
         return;
 
-    // Get data and display everything
-    const scoresaber = new ScoreSaber(data.scoresaberId);
-    const accsaber = new AccSaber(data.scoresaberId);
-    const playerData = await scoresaber.getPlayerData();
-
-    let accPlayerData;
     try {
-        accPlayerData = await accsaber.getPlayerData();
-    } catch {
-        accPlayerData = {
-            ap: 0,
-            averageAcc: 0,
+        // Get data and display everything
+        const scoresaber = new ScoreSaber(data.scoresaberId);
+        const accsaber = new AccSaber(data.scoresaberId);
+        const playerData = await scoresaber.getPlayerData();
+
+        let accPlayerData;
+        try {
+            accPlayerData = await accsaber.getPlayerData();
+        } catch {
+            accPlayerData = {
+                ap: 0,
+                averageAcc: 0,
+            }
         }
+
+        let accPlayerTopPlays;
+        try {
+            accPlayerTopPlays = await accsaber.getTopPlays();
+        } catch {
+            accPlayerTopPlays = [{
+                ap: 0,
+            }]
+        }
+
+        const scores = await scoresaber.getTopPlays();
+        const topPlay = scores?.scores?.[0]?.pp || 0;
+
+        buildStats(data, {
+            globalRank: playerData.playerInfo.rank,
+            localRank: playerData.playerInfo.countryRank,
+            pp: playerData.playerInfo.pp + (data.scoresaberId === "76561198118364720" ? 3000 : 0), // ;)
+            topPercentage: Math.ceil(playerData.playerInfo.rank * 10000 / 216000) / 100, // about 216000 registered players on the scoresaber.com leaderboard on 16.02.2022
+            topRankedPlay: Math.ceil(topPlay * 100) / 100,
+            avgAcc: Math.round(playerData.scoreStats.averageRankedAccuracy * 100) / 100,
+            totalPlays: playerData.scoreStats.totalPlayCount,
+            rankedPlays: playerData.scoreStats.rankedPlayCount,
+            totalScore: playerData.scoreStats.totalScore,
+            rankedScore: playerData.scoreStats.totalRankedScore,
+            ap: Math.ceil(accPlayerData.ap * 100) / 100,
+            topApPlay: Math.ceil((accPlayerTopPlays[0].ap || 0) * 100) / 100,
+            avgAccSaberAcc: Math.round(accPlayerData.averageAcc * 10000) / 100,
+        });
+
+        document.querySelector("#name").innerText = playerData.playerInfo.playerName;
+        const regionNames = new Intl.DisplayNames(['en'], { type: 'region' });
+        const flags = document.querySelector("#flags");
+        const countryCode = (playerData.playerInfo.country || "").toLowerCase();
+        if (countryCode) {
+            flags.setAttribute("src", `https://flagcdn.com/w80/${countryCode}.png`);
+            flags.setAttribute("title", regionNames.of(countryCode.toUpperCase()));
+        }
+
+        document.querySelector(".sexy-blur").style.backdropFilter = `blur(${data.blur}px)`;
+        const profilePic = document.querySelector("#profiePic");
+        const avatar = playerData.playerInfo.avatar || "";
+        const avatarUrl = avatar.startsWith("http") ? avatar : `https://scoresaber.com${avatar}`;
+        profilePic.style.backgroundImage = `url(${avatarUrl})`;
+        profilePic.style.backgroundSize = "cover";
+        profilePic.style.backgroundRepeat = "no-repeat";
+        profilePic.style.backgroundPosition = "50% 50%";
+        const name = document.querySelector("#name");
+        name.href = `https://scoresaber.com/u/${data.scoresaberId}`;
+    } catch (error) {
+        console.error("Failed to render panel:", error);
+        const warning = document.querySelector("#config-warning");
+        warning.style.display = "block";
+        warning.innerText = "Failed to load ScoreSaber data. Please re-check your ID in extension settings.";
     }
-
-    let accPlayerTopPlays;
-    try {
-        accPlayerTopPlays = await accsaber.getTopPlays();
-    } catch {
-        accPlayerTopPlays = [{
-            ap: 0,
-        }]
-    }
-
-    const scores = await scoresaber.getTopPlays();
-    const topPlay = scores.scores[0].pp;
-
-    buildStats(data, {
-        globalRank: playerData.playerInfo.rank,
-        localRank: playerData.playerInfo.countryRank,
-        pp: playerData.playerInfo.pp + (data.scoresaberId === "76561198118364720" ? 3000 : 0), // ;)
-        topPercentage: Math.ceil(playerData.playerInfo.rank * 10000 / 216000) / 100, // about 216000 registered players on the scoresaber.com leaderboard on 16.02.2022
-        topRankedPlay: Math.ceil(topPlay * 100) / 100,
-        avgAcc: Math.round(playerData.scoreStats.averageRankedAccuracy * 100) / 100,
-        totalPlays: playerData.scoreStats.totalPlayCount,
-        rankedPlays: playerData.scoreStats.rankedPlayCount,
-        totalScore: playerData.scoreStats.totalScore,
-        rankedScore: playerData.scoreStats.totalRankedScore,
-        ap: Math.ceil(accPlayerData.ap * 100) / 100,
-        topApPlay: Math.ceil((accPlayerTopPlays[0].ap || 0) * 100) / 100,
-        avgAccSaberAcc: Math.round(accPlayerData.averageAcc * 10000) / 100,
-    });
-
-    document.querySelector("#name").innerText = playerData.playerInfo.playerName;
-    const regionNames = new Intl.DisplayNames(['en'], {type: 'region'});
-    const flags = document.querySelector("#flags");
-    flags.setAttribute("src", "https://countryflagsapi.com/png/" + playerData.playerInfo.country);
-    flags.setAttribute("title", regionNames.of(playerData.playerInfo.country.toUpperCase()));
-    document.querySelector(".sexy-blur").style.backdropFilter = `blur(${data.blur}px)`;
-    const profilePic = document.querySelector("#profiePic");
-    profilePic.style.backgroundImage = `url(https://new.scoresaber.com${playerData.playerInfo.avatar})`;
-    profilePic.style.backgroundSize = "cover";
-    profilePic.style.backgroundRepeat = "no-repeat";
-    profilePic.style.backgroundPosition = "50% 50%";
-    const name = document.querySelector("#name");
-    name.href = `https://scoresaber.com/u/${data.scoresaberId}`;
 
 })
 

@@ -5,6 +5,17 @@ class ScoreSaber {
 
     constructor(scoresaberId) {
         this.scoresaberId = scoresaberId;
+        this.baseUrl = "https://scoresaber.com";
+    }
+
+
+    async _fetchJson(url, messages = {}) {
+        const response = await fetch(url);
+        if (!response.ok) {
+            const errorMessage = messages[response.status] || `Request failed (${response.status})`;
+            throw new Error(errorMessage);
+        }
+        return response.json();
     }
 
 
@@ -17,17 +28,11 @@ class ScoreSaber {
         return new Promise((resolve, reject) => {
 
             // Get data from scoresaber
-            fetch(`https://new.scoresaber.com/api/player/${this.scoresaberId}/full`).then(async response => {
-                if (!response.ok) {
-                    switch (response.status) {
-                        case 404: reject("User doesn't exist!");
-                        case 429: reject("Too many requests!");
-                        case 422: reject("You should input your ScoreSaber Profile ID or URL!");
-                    }
-                    return;
-                }
-
-                const data = await response.json();
+            this._fetchJson(`${this.baseUrl}/api/player/${this.scoresaberId}/full`, {
+                404: "User doesn't exist!",
+                429: "Too many requests!",
+                422: "You should input your ScoreSaber Profile ID or URL!",
+            }).then(data => {
 
                 // Return the data
                 console.log("Got data from ScoreSaber: ", data);
@@ -50,17 +55,11 @@ class ScoreSaber {
         return new Promise((resolve, reject) => {
 
             // Get data from scoresaber
-            fetch(`https://new.scoresaber.com/api/player/${this.scoresaberId}/scores/top/1`).then(async response => {
-                if (!response.ok) {
-                    switch (response.status) {
-                        case 404: reject("User doesn't exist!");
-                        case 429: reject("Too many requests!");
-                        case 422: reject("You should input your ScoreSaber Profile ID or URL!");
-                    }
-                    return;
-                }
-
-                const data = await response.json();
+            this._fetchJson(`${this.baseUrl}/api/player/${this.scoresaberId}/scores/top/1`, {
+                404: "User doesn't exist!",
+                429: "Too many requests!",
+                422: "You should input your ScoreSaber Profile ID or URL!",
+            }).then(data => {
 
                 // Return the data
                 console.log("Got data from ScoreSaber: ", data);
@@ -87,6 +86,16 @@ class AccSaber {
     }
 
 
+    async _fetchJson(url, messages = {}) {
+        const response = await fetch(url);
+        if (!response.ok) {
+            const errorMessage = messages[response.status] || `Request failed (${response.status})`;
+            throw new Error(errorMessage);
+        }
+        return response.json();
+    }
+
+
     /**
      * Fetches the accsaber user's data and statistics https://api.accsaber.com/players/76561198436848521
      * @returns All the data of the user
@@ -96,17 +105,11 @@ class AccSaber {
         return new Promise((resolve, reject) => {
 
             // Get data from scoresaber
-            fetch(`https://api.accsaber.com/players/${this.scoresaberId}`).then(async response => {
-                if (!response.ok) {
-                    switch (response.status) {
-                        case 404: reject("AccSaber user doesn't exist!");
-                        case 429: reject("Too many requests!");
-                        case 422: reject("You should input your ScoreSaber Profile ID or URL!");
-                    }
-                    return;
-                }
-
-                const data = await response.json();
+            this._fetchJson(`https://api.accsaber.com/players/${this.scoresaberId}`, {
+                404: "AccSaber user doesn't exist!",
+                429: "Too many requests!",
+                422: "You should input your ScoreSaber Profile ID or URL!",
+            }).then(data => {
 
                 // Return the data
                 console.log("Got data from AccSaber: ", data);
@@ -129,17 +132,11 @@ class AccSaber {
         return new Promise((resolve, reject) => {
 
             // Get data from scoresaber
-            fetch(`https://api.accsaber.com/players/${this.scoresaberId}/scores`).then(async response => {
-                if (!response.ok) {
-                    switch (response.status) {
-                        case 404: reject("AccSaber user doesn't exist!");
-                        case 429: reject("Too many requests!");
-                        case 422: reject("You should input your ScoreSaber Profile ID or URL!");
-                    }
-                    return;
-                }
-
-                const data = await response.json();
+            this._fetchJson(`https://api.accsaber.com/players/${this.scoresaberId}/scores`, {
+                404: "AccSaber user doesn't exist!",
+                429: "Too many requests!",
+                422: "You should input your ScoreSaber Profile ID or URL!",
+            }).then(data => {
 
                 // Return the data
                 console.log("Got data from AccSaber: ", data);

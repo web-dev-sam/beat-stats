@@ -147,7 +147,7 @@ class ConfigView {
      */
     checkScoreSaberId(data) {
         const me = this;
-        return new Promise((resolve, reject) => {
+        return new Promise(resolve => {
             const scoresaber = new ScoreSaber(data.scoresaberId);
             scoresaber
                 .getPlayerData()
@@ -155,8 +155,7 @@ class ConfigView {
                     me.playerData = playerData;
                     resolve({});
                 })
-                .catch(error => resolve({ error }))
-                .finally(_ => resolve({}));
+                .catch(error => resolve({ error: error.message || error }));
         });
     }
 
@@ -168,7 +167,7 @@ class ConfigView {
      */
     checkAccSaberId(data) {
         const me = this;
-        return new Promise((resolve, reject) => {
+        return new Promise(resolve => {
             const accsaber = new AccSaber(data.scoresaberId);
             accsaber
                 .getPlayerData()
@@ -180,8 +179,7 @@ class ConfigView {
                     me.playerData = playerData;
                     resolve({});
                 })
-                .catch(error => resolve({ error }))
-                .finally(_ => resolve({}));
+                .catch(error => resolve({ error: error.message || error }));
         });
     }
 
@@ -199,7 +197,7 @@ class ConfigView {
 
             if (key === "scoresaberId" && data[key]) {
                 const match = data[key].match(/\d+/g);
-                if (match[0])
+                if (match && match[0])
                     data[key] = match[0]
             }
 
