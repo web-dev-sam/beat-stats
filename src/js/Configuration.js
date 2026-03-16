@@ -63,8 +63,17 @@ class Configuration {
     static get(segment) {
         const data = twitch.ext.configuration[segment];
         console.log("Getting Configuration: ", data);
-        if (data) {
-            return JSON.parse(data.content);
+
+        // `data` can exist with empty content for users who haven't saved anything yet.
+        const content = data?.content;
+        if (!content)
+            return;
+
+        try {
+            return JSON.parse(content);
+        } catch (error) {
+            console.warn("Failed to parse configuration content:", error, content);
+            return;
         }
     }
 
@@ -81,8 +90,7 @@ class Configuration {
             Configuration.set(segment, Object.assign({}, Configuration.STRUCTURE[segment]["data"], demoDefaults[scoresaberId]));
             return;
         }
-        const config = Configuration.STRUCTURE[segment]["data"];
-        config.scoresaberId = scoresaberId;
+        const config = Object.assign({}, Configuration.STRUCTURE[segment]["data"], { scoresaberId });
         Configuration.set(segment, config);
     }
 
@@ -105,7 +113,8 @@ class Configuration {
      * @static
      */
     static __getVersion(segment) {
-        return Configuration.STRUCTURE[segment]["version"] + window.btoa(JSON.stringify(Configuration.STRUCTURE[segment]["data"]));
+        // Twitch expects this to be a stable, short version string.
+        return Configuration.STRUCTURE[segment]["version"];
     }
 
 }

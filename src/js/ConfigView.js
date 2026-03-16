@@ -40,7 +40,7 @@ class ConfigView {
     save() {
         const me = this;
         const btnSave = document.querySelectorAll(".btn-save");
-        document.querySelector(`label.error`).innerText = "";
+        document.querySelectorAll(`label.error`).forEach(el => el.innerText = "");
         return new Promise(async resolve => {
 
             // Don't save again if we're already saving
@@ -213,7 +213,8 @@ class ConfigView {
      * Show all config data to the form
      */
     showFormData(scoreSaberId) {
-        const data = demoDefaults[scoreSaberId]? demoDefaults[scoreSaberId] : Configuration.get("broadcaster");
+        const usingDemoDefaults = scoreSaberId && demoDefaults[scoreSaberId];
+        const data = usingDemoDefaults ? demoDefaults[scoreSaberId] : Configuration.get("broadcaster");
         //console.log(demoDefaults[scoreSaberId], data);
         if (!data)
             return;
@@ -224,11 +225,15 @@ class ConfigView {
             actionHandler[func](elem, data[key]);
         });
 
-        if (demoDefaults[scoreSaberId]) {
+        // Only show the hint when we explicitly applied demo defaults for an ID.
+        // Don't auto-hide on config refresh (onChanged) to avoid flicker.
+        if (usingDemoDefaults) {
             document.querySelector("#suggestion-info").classList.remove("hidden");
+        } else if (scoreSaberId) {
+            document.querySelector("#suggestion-info").classList.add("hidden");
         }
         
-        if (data.scoresaberId && !scoreSaberId) {
+        if (data.scoresaberId) {
             document.querySelectorAll(".container__item").forEach(elem => elem.classList.remove("hidden"));
         }
     }
@@ -238,12 +243,13 @@ class ConfigView {
 
 
 
+const configView = new ConfigView();
+configView.bindEvents();
+
 hookOnAuthorized()
 hookOnContextChanged()
 hookOnGlobalConfigChanged(_ => {
-    const configView = new ConfigView();
     configView.showFormData();
-    configView.bindEvents();
 
     // Uncomment this to empty the config (like for new users)
     //Configuration.empty();

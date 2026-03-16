@@ -219,6 +219,9 @@ function buildStats(values, settings) {
     if (length > 6) {
         document.querySelector("#name").style.display = "none";
         document.querySelector(".player-data").style.marginTop = "18px";
+    } else {
+        document.querySelector("#name").style.display = "";
+        document.querySelector(".player-data").style.marginTop = "";
     }
 
     document.querySelector(`.player-data .left-column`).innerHTML = left;
@@ -231,38 +234,60 @@ hookOnAuthorized()
 hookOnContextChanged()
 hookOnGlobalConfigChanged(async () => {
 
+    const warning = document.querySelector("#config-warning");
     const data = Configuration.get("broadcaster");
     //console.log(data);
-    if (!data || !data.scoresaberId)
+    if (!data || !data.scoresaberId) {
+        if (warning) {
+            warning.style.display = "block";
+            warning.innerText = "Please set up your extension config.";
+        }
         return;
+    }
+    if (warning) {
+        warning.style.display = "none";
+    }
 
     try {
         // Get data and display everything
         const scoresaber = new ScoreSaber(data.scoresaberId);
-        const accsaber = new AccSaber(data.scoresaberId);
         const playerData = await scoresaber.getPlayerData();
 
-        let accPlayerData;
-        try {
-            accPlayerData = await accsaber.getPlayerData();
-        } catch {
-            accPlayerData = {
-                ap: 0,
-                averageAcc: 0,
+        const wantsAccSaber = data.ap || data.topApPlay || data.avgAccSaberAcc;
+        let accPlayerData = { ap: 0, averageAcc: 0 };
+        let accPlayerTopPlays = [{ ap: 0 }];
+        if (wantsAccSaber) {
+            const accsaber = new AccSaber(data.scoresaberId);
+            try {
+                accPlayerData = await accsaber.getPlayerData();
+            } catch {
+                accPlayerData = { ap: 0, averageAcc: 0 };
+            }
+            if (!accPlayerData || accPlayerData.errorCode != null) {
+                accPlayerData = { ap: 0, averageAcc: 0 };
+            }
+
+            try {
+                accPlayerTopPlays = await accsaber.getTopPlays();
+            } catch {
+                accPlayerTopPlays = [{ ap: 0 }];
+            }
+            if (!Array.isArray(accPlayerTopPlays) || accPlayerTopPlays.length === 0) {
+                accPlayerTopPlays = [{ ap: 0 }];
             }
         }
 
-        let accPlayerTopPlays;
+        let topPlay = 0;
         try {
-            accPlayerTopPlays = await accsaber.getTopPlays();
+            const scores = await scoresaber.getTopPlays();
+            topPlay =
+                (scores?.scores?.[0]?.pp) ??
+                (scores?.playerScores?.[0]?.score?.pp) ??
+                (scores?.playerScores?.[0]?.pp) ??
+                0;
         } catch {
-            accPlayerTopPlays = [{
-                ap: 0,
-            }]
+            topPlay = 0;
         }
-
-        const scores = await scoresaber.getTopPlays();
-        const topPlay = scores?.scores?.[0]?.pp || 0;
 
         buildStats(data, {
             globalRank: playerData.playerInfo.rank,
@@ -281,12 +306,14 @@ hookOnGlobalConfigChanged(async () => {
         });
 
         document.querySelector("#name").innerText = playerData.playerInfo.playerName;
-        const regionNames = new Intl.DisplayNames(['en'], { type: 'region' });
         const flags = document.querySelector("#flags");
         const countryCode = (playerData.playerInfo.country || "").toLowerCase();
         if (countryCode) {
             flags.setAttribute("src", `https://flagcdn.com/w80/${countryCode}.png`);
-            flags.setAttribute("title", regionNames.of(countryCode.toUpperCase()));
+            if (typeof Intl !== "undefined" && Intl.DisplayNames) {
+                const regionNames = new Intl.DisplayNames(['en'], { type: 'region' });
+                flags.setAttribute("title", regionNames.of(countryCode.toUpperCase()));
+            }
         }
 
         document.querySelector(".sexy-blur").style.backdropFilter = `blur(${data.blur}px)`;
@@ -301,9 +328,12 @@ hookOnGlobalConfigChanged(async () => {
         name.href = `https://scoresaber.com/u/${data.scoresaberId}`;
     } catch (error) {
         console.error("Failed to render panel:", error);
-        const warning = document.querySelector("#config-warning");
-        warning.style.display = "block";
-        warning.innerText = "Failed to load ScoreSaber data. Please re-check your ID in extension settings.";
+        if (warning) {
+            warning.style.display = "block";
+            warning.innerText =
+                error?.message ||
+                "Failed to load ScoreSaber data. Please re-check your ID in extension settings.";
+        }
     }
 
 })

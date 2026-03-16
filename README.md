@@ -21,6 +21,20 @@
 
 <br>&nbsp;<br>
 
+<div align="center">
+    <h2>Local Development</h2>
+</div>
+
+ScoreSaber's API does not allow browser cross-origin requests (CORS). When running `config.html` / `panel.html` locally, start the included dev proxy first:
+
+```sh
+node tools/dev-proxy.mjs
+```
+
+Then open the pages using your usual dev server (for example VS Code Live Server). The client code will automatically use `http://127.0.0.1:8787` as a fallback proxy when running on `localhost` / `127.0.0.1`.
+
+<br>&nbsp;<br>
+
 
 <div align="center">
     <h2>Demo Image</h2>
